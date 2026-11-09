@@ -1,0 +1,422 @@
+{
+ "_about": "Expert network: places of academic experts and research partners (no names). Projects: the founder's project experience, from the public Projects page of daguanghan.com; positions in China are indicative by region only.",
+ "hub": {
+  "lat": 52.5,
+  "lon": -1.5,
+  "place": "EarthState, United Kingdom"
+ },
+ "experts": [
+  {
+   "lat": 51.487,
+   "lon": -3.179,
+   "place": "Cardiff, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 40.443,
+   "lon": -79.943,
+   "place": "Pittsburgh, United States",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 52.002,
+   "lon": 4.373,
+   "place": "Delft, Netherlands",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 52.765,
+   "lon": -1.229,
+   "place": "Loughborough, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 63.419,
+   "lon": 10.402,
+   "place": "Trondheim, Norway",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 51.525,
+   "lon": -0.134,
+   "place": "London, United Kingdom",
+   "kind": "Academic expert",
+   "count": 4
+  },
+  {
+   "lat": 51.458,
+   "lon": -2.603,
+   "place": "Bristol, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 52.204,
+   "lon": 0.115,
+   "place": "Cambridge, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 53.467,
+   "lon": -2.234,
+   "place": "Manchester, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 52.938,
+   "lon": -1.195,
+   "place": "Nottingham, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 53.486,
+   "lon": -2.272,
+   "place": "Salford, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 57.015,
+   "lon": 9.985,
+   "place": "Aalborg, Denmark",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 52.486,
+   "lon": -1.888,
+   "place": "Birmingham, United Kingdom",
+   "kind": "Academic expert",
+   "count": 2
+  },
+  {
+   "lat": 50.974,
+   "lon": 11.329,
+   "place": "Weimar, Germany",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 57.689,
+   "lon": 11.974,
+   "place": "Gothenburg, Sweden",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 55.909,
+   "lon": -3.32,
+   "place": "Edinburgh, United Kingdom",
+   "kind": "Academic expert",
+   "count": 2
+  },
+  {
+   "lat": 50.878,
+   "lon": 4.7,
+   "place": "Leuven, Belgium",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 37.979,
+   "lon": 23.783,
+   "place": "Athens, Greece",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 54.98,
+   "lon": -1.615,
+   "place": "Newcastle, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 55.786,
+   "lon": 12.524,
+   "place": "Copenhagen, Denmark",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 51.38,
+   "lon": -2.328,
+   "place": "Bath, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 53.807,
+   "lon": -1.555,
+   "place": "Leeds, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 51.754,
+   "lon": -1.254,
+   "place": "Oxford, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 55.862,
+   "lon": -4.242,
+   "place": "Glasgow, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 51.243,
+   "lon": -0.59,
+   "place": "Guildford, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 52.384,
+   "lon": -1.562,
+   "place": "Coventry, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 43.009,
+   "lon": -81.273,
+   "place": "London, Ontario, Canada",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 59.92,
+   "lon": 10.735,
+   "place": "Oslo, Norway",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 53.307,
+   "lon": -6.222,
+   "place": "Dublin, Ireland",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 35.145,
+   "lon": 33.413,
+   "place": "Nicosia, Cyprus",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 53.381,
+   "lon": -1.489,
+   "place": "Sheffield, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 50.935,
+   "lon": -1.396,
+   "place": "Southampton, United Kingdom",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 48.08,
+   "lon": 11.638,
+   "place": "Munich, Germany",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 37.4275,
+   "lon": -122.1697,
+   "place": "Stanford, United States",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 37.8719,
+   "lon": -122.2585,
+   "place": "Berkeley, United States",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 42.4534,
+   "lon": -76.4735,
+   "place": "Ithaca, United States",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 40.7295,
+   "lon": -73.9965,
+   "place": "New York, United States",
+   "kind": "Academic expert",
+   "count": 1
+  },
+  {
+   "lat": 29.6436,
+   "lon": -82.3549,
+   "place": "Gainesville, United States",
+   "kind": "Academic expert",
+   "count": 1
+  }
+ ],
+ "projects": [
+  {
+   "type": "rd",
+   "country": "United Kingdom",
+   "lat": 52.6,
+   "lon": -1.5,
+   "title": "EarthState Twin and Standfast",
+   "note": "Two AI platforms for the remaining life of infrastructure, developed in 2026"
+  },
+  {
+   "type": "rd",
+   "country": "Germany",
+   "lat": 48.08,
+   "lon": 11.64,
+   "title": "Doctoral research in structural engineering",
+   "note": "Universität der Bundeswehr München"
+  },
+  {
+   "type": "rd",
+   "country": "Norway",
+   "lat": 59.92,
+   "lon": 10.73,
+   "title": "BIM innovation centre",
+   "note": "Applied BIM research and teaching at OsloMet"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 32.2,
+   "lon": 120.6,
+   "title": "Ageing steel lattice structures under extreme wind",
+   "note": "Three successive commissioned research contracts for a large infrastructure operator"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 31.2,
+   "lon": 121.2,
+   "title": "Facade installation quality by laser scanning and vibrometry",
+   "note": "High-rise office building, large commercial development"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 30.7,
+   "lon": 120.8,
+   "title": "A BIM implementation guideline for a commercial developer",
+   "note": "Information standards, quality checklists and data-sharing rules"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 32.7,
+   "lon": 119.0,
+   "title": "Code clauses turned into machine-checkable rules",
+   "note": "Rule base for automated compliance checking, for a large infrastructure operator"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 29.9,
+   "lon": 106.2,
+   "title": "One expressway operator, three contracts in succession",
+   "note": "BIM and GIS for operation and maintenance, then services, then construction-waste recycling"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 29.2,
+   "lon": 107.1,
+   "title": "A technical lecture, then a sensing contract",
+   "note": "Strain, temperature and vibration sensing for cable structures, for a listed construction group"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 28.4,
+   "lon": 107.9,
+   "title": "Three-dimensional monitoring of a long-span mountain arch bridge",
+   "note": "Laser scanning and BIM through construction"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 30.5,
+   "lon": 107.5,
+   "title": "Digital transformation advice to an airport operator",
+   "note": "Six-month advisory on BIM-based digital delivery"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 28.8,
+   "lon": 105.6,
+   "title": "Recycled aggregate concrete on a high-speed railway project",
+   "note": "With specialists from KU Leuven on site"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 31.8,
+   "lon": 118.5,
+   "title": "A digital twin corrected by measurement",
+   "note": "Long-span river bridge, model updated from measurement in service"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 31.4,
+   "lon": 117.9,
+   "title": "Large-scale experiments on coupled hazards for long-span structures",
+   "note": "National competitive R&D programme"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 30.5,
+   "lon": 99.5,
+   "title": "Bridges at high altitude and in cold regions",
+   "note": "National Natural Science Foundation key project"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 32.3,
+   "lon": 117.5,
+   "title": "Fatigue monitoring and BIM-based safety diagnosis",
+   "note": "Two provincial programmes, including an international-cooperation programme"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 31.0,
+   "lon": 119.1,
+   "title": "A 1:10 building-machine testbed",
+   "note": "Gantry with rail-mounted robot arms, PLC control and a digital twin"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 29.6,
+   "lon": 106.6,
+   "title": "Building an applied research academy",
+   "note": "Twelve joint research centres and laboratories, with European partners"
+  }
+ ]
+}
