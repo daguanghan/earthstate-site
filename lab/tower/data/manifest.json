@@ -1,0 +1,257 @@
+{
+ "model": [
+  "data/tower_line_web_glb_1.json",
+  "data/tower_line_web_glb_2.json"
+ ],
+ "hdr": [
+  "data/kloofendal_48d_partly_cloudy_puresky_2k_hdr_1.json"
+ ],
+ "rings": [
+  {
+   "dir": "tt/r0",
+   "n": 48,
+   "object_ids": [
+    {
+     "id": 1,
+     "node": "hero_legs"
+    },
+    {
+     "id": 2,
+     "node": "hero_body_bracing"
+    },
+    {
+     "id": 3,
+     "node": "hero_arms"
+    },
+    {
+     "id": 4,
+     "node": "hero_earthwire_peak"
+    },
+    {
+     "id": 5,
+     "node": "hero_insulators"
+    },
+    {
+     "id": 6,
+     "node": "hero_fittings"
+    },
+    {
+     "id": 7,
+     "node": "hero_foundations"
+    },
+    {
+     "id": 8,
+     "node": "conductor_phase_A"
+    },
+    {
+     "id": 9,
+     "node": "conductor_phase_B"
+    },
+    {
+     "id": 10,
+     "node": "conductor_phase_C"
+    },
+    {
+     "id": 11,
+     "node": "earth_wires"
+    },
+    {
+     "id": 12,
+     "node": "spacers"
+    },
+    {
+     "id": 13,
+     "node": "terrain"
+    },
+    {
+     "id": 14,
+     "node": "trees_foliage"
+    },
+    {
+     "id": 15,
+     "node": "trees_trunks"
+    },
+    {
+     "id": 20,
+     "node": "t0_steel"
+    },
+    {
+     "id": 21,
+     "node": "t1_steel"
+    },
+    {
+     "id": 23,
+     "node": "t3_steel"
+    },
+    {
+     "id": 24,
+     "node": "t4_steel"
+    }
+   ]
+  },
+  {
+   "dir": "tt/r1",
+   "n": 48,
+   "object_ids": [
+    {
+     "id": 1,
+     "node": "hero_legs"
+    },
+    {
+     "id": 2,
+     "node": "hero_body_bracing"
+    },
+    {
+     "id": 3,
+     "node": "hero_arms"
+    },
+    {
+     "id": 4,
+     "node": "hero_earthwire_peak"
+    },
+    {
+     "id": 5,
+     "node": "hero_insulators"
+    },
+    {
+     "id": 6,
+     "node": "hero_fittings"
+    },
+    {
+     "id": 7,
+     "node": "hero_foundations"
+    },
+    {
+     "id": 8,
+     "node": "conductor_phase_A"
+    },
+    {
+     "id": 9,
+     "node": "conductor_phase_B"
+    },
+    {
+     "id": 10,
+     "node": "conductor_phase_C"
+    },
+    {
+     "id": 11,
+     "node": "earth_wires"
+    },
+    {
+     "id": 12,
+     "node": "spacers"
+    },
+    {
+     "id": 13,
+     "node": "terrain"
+    },
+    {
+     "id": 14,
+     "node": "trees_foliage"
+    },
+    {
+     "id": 15,
+     "node": "trees_trunks"
+    },
+    {
+     "id": 20,
+     "node": "t0_steel"
+    },
+    {
+     "id": 21,
+     "node": "t1_steel"
+    },
+    {
+     "id": 23,
+     "node": "t3_steel"
+    },
+    {
+     "id": 24,
+     "node": "t4_steel"
+    }
+   ]
+  },
+  {
+   "dir": "tt/r2",
+   "n": 48,
+   "object_ids": [
+    {
+     "id": 1,
+     "node": "hero_legs"
+    },
+    {
+     "id": 2,
+     "node": "hero_body_bracing"
+    },
+    {
+     "id": 3,
+     "node": "hero_arms"
+    },
+    {
+     "id": 4,
+     "node": "hero_earthwire_peak"
+    },
+    {
+     "id": 5,
+     "node": "hero_insulators"
+    },
+    {
+     "id": 6,
+     "node": "hero_fittings"
+    },
+    {
+     "id": 7,
+     "node": "hero_foundations"
+    },
+    {
+     "id": 8,
+     "node": "conductor_phase_A"
+    },
+    {
+     "id": 9,
+     "node": "conductor_phase_B"
+    },
+    {
+     "id": 10,
+     "node": "conductor_phase_C"
+    },
+    {
+     "id": 11,
+     "node": "earth_wires"
+    },
+    {
+     "id": 12,
+     "node": "spacers"
+    },
+    {
+     "id": 13,
+     "node": "terrain"
+    },
+    {
+     "id": 14,
+     "node": "trees_foliage"
+    },
+    {
+     "id": 15,
+     "node": "trees_trunks"
+    },
+    {
+     "id": 20,
+     "node": "t0_steel"
+    },
+    {
+     "id": 21,
+     "node": "t1_steel"
+    },
+    {
+     "id": 23,
+     "node": "t3_steel"
+    },
+    {
+     "id": 24,
+     "node": "t4_steel"
+    }
+   ]
+  }
+ ]
+}

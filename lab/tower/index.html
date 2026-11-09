@@ -1,0 +1,836 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tower and line in 3D · EarthState</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: control-room bench — one large 16:9 stage, a narrow readout column beside it, records below.
+   Generated from 3D-render-lab/template/twin_viewer.template.html by tools/make_viewer.py. */
+:root {
+  --bg: #eef1f3; --surface: #ffffff; --ink: #16202a; --muted: #586572; --line: #d2d9df;
+  --accent: #0d6b7c; --accent-soft: #d8eef1; --hot: #c2410c; --stage: #0d141b; --stage-ink: #dfe7ee;
+  --f-display: "Barlow Condensed", "Noto Sans SC", "PingFang SC", sans-serif;
+  --f-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --f-data: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e141a; --surface: #151d25; --ink: #e2e8ed; --muted: #8e9ba7; --line: #27323c;
+  --accent: #46b6c8; --accent-soft: #123139; --hot: #fb8b4c; --stage: #070b0f; --stage-ink: #dfe7ee; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e141a; --surface: #151d25; --ink: #e2e8ed; --muted: #8e9ba7; --line: #27323c;
+  --accent: #46b6c8; --accent-soft: #123139; --hot: #fb8b4c; --stage: #070b0f; --stage-ink: #dfe7ee; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 20px 40px }
+.wrap { max-width: 1280px; margin: 0 auto; display: grid; gap: 18px }
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px 24px }
+h1 { font-family: var(--f-display); font-weight: 600; font-size: clamp(28px, 4vw, 40px); line-height: 1.05; margin: 0; letter-spacing: .01em; text-wrap: balance }
+h1 small { display: block; font-family: var(--f-body); font-weight: 400; font-size: 14px; color: var(--muted); letter-spacing: 0; margin-top: 6px }
+h2 { font-family: var(--f-display); font-weight: 600; font-size: 22px; margin: 0 0 8px; letter-spacing: .02em }
+.pills { display: flex; flex-wrap: wrap; gap: 8px }
+.pill { font-family: var(--f-data); font-size: 12px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: var(--surface); white-space: nowrap }
+.pill b { color: var(--ink); font-weight: 500 }
+nav[role="tablist"] { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--line) }
+nav button { font: 500 14px var(--f-body); color: var(--muted); background: none; border: 0; padding: 10px 14px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px }
+nav button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent) }
+nav button .k { font-family: var(--f-data); font-size: 11px; color: var(--muted); margin-left: 6px }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.bench { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 16px; align-items: start }
+@media (max-width: 900px) { .bench { grid-template-columns: minmax(0, 1fr) } }
+.stage { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: var(--stage); border-radius: 6px; overflow: hidden; touch-action: none; outline: none }
+.stage:focus-visible { box-shadow: 0 0 0 2px var(--accent) }
+.stage canvas, .stage video { position: absolute; inset: 0; width: 100%; height: 100%; display: block }
+.stage video { object-fit: contain; background: #000 }
+.hud { position: absolute; left: 10px; top: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none }
+.hud span { font: 12px var(--f-data); color: var(--stage-ink); background: rgba(8, 12, 16, .62); padding: 3px 8px; border-radius: 4px }
+.hud .warn { color: #ffd2b8 }
+.keys { position: absolute; left: 10px; bottom: 10px; font: 11.5px/1.55 var(--f-data); color: var(--stage-ink); background: rgba(8, 12, 16, .72); padding: 7px 10px; border-radius: 4px; pointer-events: none }
+.keys b { color: #9fe3ee; font-weight: 500 }
+.tools { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px }
+.tools button { font: 500 12px var(--f-body); color: var(--stage-ink); background: rgba(8, 12, 16, .7); border: 1px solid rgba(255, 255, 255, .18); border-radius: 4px; padding: 5px 9px; cursor: pointer }
+.tools button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff }
+.tip { position: absolute; pointer-events: none; font: 12px/1.45 var(--f-data); color: var(--stage-ink); background: rgba(8, 12, 16, .86); padding: 6px 9px; border-radius: 4px; transform: translate(12px, 12px); white-space: nowrap; max-width: 60% }
+.loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--stage-ink); font: 13px var(--f-data); background: var(--stage); text-align: center; padding: 0 16px }
+aside.panel { display: grid; gap: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; min-width: 0 }
+.panel h3 { font: 600 13px var(--f-body); margin: 0 0 6px; color: var(--muted); letter-spacing: .06em }
+.readout { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font: 13px var(--f-data); font-variant-numeric: tabular-nums; margin: 0 }
+.readout dt { color: var(--muted) }
+.readout dd { margin: 0; text-align: right; overflow-wrap: anywhere }
+.big { font: 600 34px/1 var(--f-display); font-variant-numeric: tabular-nums }
+.big small { font: 400 13px var(--f-data); color: var(--muted); margin-left: 4px }
+.legend { display: grid; gap: 4px }
+.legend .bar { height: 12px; border-radius: 2px; background: linear-gradient(90deg, #30123b, #4662d8, #35abf8, #1be5b5, #74fe5d, #c9ef34, #fbb938, #f56918, #c42503, #7a0403) }
+.legend .ticks { display: flex; justify-content: space-between; font: 11px var(--f-data); color: var(--muted) }
+.seg { display: flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 6px; overflow: hidden }
+.seg button { flex: 1 1 auto; font: 500 13px var(--f-body); padding: 7px 8px; border: 0; background: var(--surface); color: var(--muted); cursor: pointer }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff }
+.views { display: flex; flex-wrap: wrap; gap: 6px }
+.views button { font: 12.5px var(--f-body); padding: 4px 9px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); cursor: pointer }
+.views button:hover { border-color: var(--accent); color: var(--accent) }
+.note { font-size: 12.5px; color: var(--muted); margin: 0 }
+.note.flag { color: var(--hot) }
+.hot-list { display: grid; gap: 3px; font: 12px var(--f-data); max-height: 140px; overflow: auto }
+.hot-list div { display: flex; justify-content: space-between; gap: 8px; cursor: pointer }
+.hot-list div:hover { color: var(--accent) }
+input[type="range"] { width: 100%; accent-color: var(--accent) }
+.records { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 16px; min-width: 0 }
+.tbl { overflow-x: auto }
+table { width: 100%; border-collapse: collapse; font-size: 13px }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-weight: 500; color: var(--muted); font-size: 12px; letter-spacing: .04em }
+td.n { font-family: var(--f-data); font-variant-numeric: tabular-nums; white-space: nowrap }
+.films { display: grid; gap: 6px }
+.films button { text-align: left; font: 13px var(--f-body); padding: 6px 9px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); color: var(--ink); cursor: pointer }
+.films button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent) }
+footer { font-size: 12px; color: var(--muted) }
+footer a { color: var(--accent) }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1 id="ttl"></h1>
+    <div class="pills" id="pills"><span class="pill">Live engine <b id="backend">Loading</b></span></div>
+  </header>
+
+  <nav role="tablist" aria-label="Outputs">
+    <button role="tab" id="tab-live" aria-controls="view-live" aria-selected="true">Live twin<span class="k">three.js</span></button>
+    <button role="tab" id="tab-photo" aria-controls="view-photo" aria-selected="false">Photoreal · multi-angle, drag and pick<span class="k">Vork</span></button>
+    <button role="tab" id="tab-film" aria-controls="view-film" aria-selected="false">Films · MP4<span class="k">Vork</span></button>
+  </nav>
+
+  <!-- LIVE -->
+  <section id="view-live" class="bench" role="tabpanel" aria-labelledby="tab-live">
+    <div class="stage" id="liveStage" tabindex="0" aria-label="Live 3D view: drag to rotate, F  key toggles fly mode">
+      <div class="loading" id="liveLoading">Loading model and lighting…</div>
+      <div class="hud" id="liveHud"></div>
+      <div class="keys" id="keys" hidden></div>
+      <div class="tools">
+        <button id="flyBtn" aria-pressed="false" title="F">Fly</button>
+        <button id="resetBtn" title="Back to the start view">Reset</button>
+      </div>
+      <div class="tip" id="liveTip" hidden></div>
+    </div>
+    <aside class="panel">
+      <div id="modeBox">
+        <h3>Show</h3>
+        <div class="seg" role="group" aria-label="Display">
+          <button id="modeHeat" aria-pressed="true">Colour map</button>
+          <button id="modeReal" aria-pressed="false">Real materials</button>
+        </div>
+      </div>
+      <div>
+        <h3>Views</h3>
+        <div class="views" id="views"></div>
+      </div>
+      <div id="stateBox"></div>
+      <div class="legend" id="legend">
+        <h3 id="legendLabel"></h3>
+        <div class="bar"></div>
+        <div class="ticks" id="legendTicks"></div>
+      </div>
+      <div>
+        <h3>Selected</h3>
+        <dl class="readout" id="pick"><dt>Tip</dt><dd>Click any part; double-click to fly to it</dd></dl>
+      </div>
+      <div id="hotBox">
+        <h3 id="hotLabel">Needs attention</h3>
+        <div class="hot-list" id="hotList"></div>
+      </div>
+      <p class="note flag" id="dataNote"></p>
+    </aside>
+  </section>
+
+  <!-- PHOTO -->
+  <section id="view-photo" class="bench" role="tabpanel" aria-labelledby="tab-photo" hidden>
+    <div class="stage" id="photoStage" tabindex="0" aria-label="Photoreal turntable: drag left or right to rotate, up or down to change elevation">
+      <canvas id="photoCanvas" width="1280" height="720"></canvas>
+      <canvas id="maskCanvas" width="640" height="360"></canvas>
+      <div class="loading" id="photoLoading">Loading photoreal turntable…</div>
+      <div class="hud"><span>drag left or right to rotate · drag up or down to change elevation · Click to identify</span><span id="photoAngle"></span></div>
+      <div class="tip" id="photoTip" hidden></div>
+    </div>
+    <aside class="panel">
+      <div>
+        <h3>Elevation</h3>
+        <div class="seg" role="group" aria-label="Elevation" id="ringSeg"></div>
+      </div>
+      <div>
+        <h3>Azimuth</h3>
+        <input type="range" id="photoSlider" min="0" max="1" value="0" aria-label="Azimuth">
+        <div class="seg" role="group" aria-label="Auto-rotate" style="margin-top:8px"><button id="spinBtn" aria-pressed="false">Auto-rotate</button></div>
+      </div>
+      <div>
+        <h3>Selected part</h3>
+        <div class="big" id="partName" style="font-size:26px">—</div>
+        <p class="note" id="partNote">Click a part in the image.</p>
+        <dl class="readout" id="partRows"></dl>
+      </div>
+      <p class="note" id="photoNote">Each frame is rendered by  Vork offline ray tracing. Picking uses an object-ID layer rendered alongside each frame, so every pixel knows which part it belongs to.</p>
+    </aside>
+  </section>
+
+  <!-- FILM -->
+  <section id="view-film" class="bench" role="tabpanel" aria-labelledby="tab-film" hidden>
+    <div class="stage"><video id="film" controls playsinline muted preload="metadata"></video></div>
+    <aside class="panel">
+      <div><h3>Camera</h3><div class="films" id="films"></div></div>
+      <dl class="readout" id="filmRows"></dl>
+      <p class="note" id="filmNote"></p>
+    </aside>
+  </section>
+
+  <div class="records">
+    <div class="card"><h2>Render log</h2><div class="tbl"><table><thead><tr><th>Task</th><th>Quality</th><th>Resolution</th><th>Time</th></tr></thead><tbody id="timings"></tbody></table></div><p class="note" id="timingsNote"></p></div>
+    <div class="card" id="extraCard"><h2 id="extraTitle"></h2><div class="tbl" id="extraBody"></div></div>
+  </div>
+
+  <footer id="credits"></footer>
+</div>
+
+<script>
+/* 220 kV tower line — project block for the twin viewer (3D-render-lab/template). */
+(function () {
+  const H0 = 1.48;
+  const KIND = { leg: 'Leg main member', strut: 'Horizontal', diagonal: 'Diagonal', redundant: 'Redundant', diaphragm: 'Diaphragm',
+    arm_chord: 'Cross-arm chord', arm_diagonal: 'Cross-arm diagonal', arm_vertical: 'Cross-arm vertical', arm_cross: 'Cross-arm horizontal', arm_plan_diagonal: 'Cross-arm plan diagonal' };
+  const GROUP = { legs: 'Legs', body_bracing: 'Body', arms: 'Conductor cross-arms', earthwire_peak: 'Earth-wire peak' };
+  const NODE = {
+    hero_insulators: ['Composite insulator string', 'Silicone sheds, I-string suspension, about 2.7 m'], hero_fittings: ['Fittings', 'Attachment points, yoke plates, clamps'],
+    hero_foundations: ['Foundations', 'Concrete foundation chimneys'], conductor_phase_A: ['Phase A conductor', 'Upper arm, twin-bundle ACSR'],
+    conductor_phase_B: ['Phase B conductor', 'Middle arm, twin-bundle ACSR'], conductor_phase_C: ['Phase C conductor', 'Lower arm, twin-bundle ACSR'],
+    earth_wires: ['Earth wire', 'OPGW earth wire'], spacers: ['Spacers', 'Spacers for twin-bundle conductors'] };
+  const spec = (s) => `L${Math.round(s * 1000)}×${Math.max(5, Math.round(s * 90))}`;
+  const rnd = (i) => { const s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); };
+  let members = [], wind = { v: 26, dir: 0 };
+
+  function util(m, q, dirx) {
+    const y = (m.a[1] + m.b[1]) / 2, r = Math.max(0, 1 - y / 50), k = 0.85 + 0.3 * rnd(m.id);
+    const xm = (m.a[0] + m.b[0]) / 2, zm = (m.a[2] + m.b[2]) / 2;
+    let u;
+    switch (m.kind) {
+      case 'leg': u = 0.2 + 0.1 * r + q * (0.25 + 0.35 * r) * (0.7 + 0.3 * Math.sign(xm) * dirx); break;
+      case 'diagonal': u = 0.1 + q * 0.55 * (1 - y / 60) * (Math.abs(zm) > Math.abs(xm) ? 1 : 0.5); break;
+      case 'arm_chord': u = 0.28 + q * 0.42; break;
+      case 'arm_diagonal': case 'arm_vertical': u = 0.16 + q * 0.33; break;
+      default: u = 0.07 + q * 0.22;
+    }
+    return (m.group === 'earthwire_peak' ? 0.7 : 1) * u * k;
+  }
+
+  window.TWIN = {
+    config: {
+      title: 'Tower and line: 3D test bench',
+      subtitle: 'Double-circuit lattice steel tower · 340 m spans · one model, three outputs',
+      pills: [['Offline render', 'Vork 0.2.0'], ['Data', 'Synthetic demo · E1']],
+      liveTab: 'Live twin · utilisation colour map',
+      dataNote: 'Colours show synthetic demonstration data (evidence level E1), scaled roughly with wind speed squared. They are not structural calculation results; connected to the platform, the view reads its outputs instead.',
+      model: ['data/tower_line_web_glb_1.json', 'data/tower_line_web_glb_2.json'],
+      env: { hdr: ['data/kloofendal_48d_partly_cloudy_puresky_2k_hdr_1.json'], intensity: 0.85, exposure: 1,
+             fog: { color: '#bfcbd6', density: 0.00032 }, sun: { intensity: 3.2, far: 420 } },
+      camera: { fov: 40, position: [46, 18, 66], target: [0, 26, 0], near: 0.1, far: 4000, minDistance: 0.3, maxDistance: 1500 },
+      views: [
+        { name: 'Overview', position: [46, 18, 66], target: [0, 26, 0] },
+        { name: 'From the base', position: [9, 2.2, 13], target: [0, 32, 0] },
+        { name: 'Along the line', position: [0, 26, 95], target: [0, 26, 0] },
+        { name: 'Across the line', position: [95, 26, 0], target: [0, 26, 0] },
+        { name: 'Plan', position: [0.01, 140, 0], target: [0, 20, 0] },
+        { name: 'Middle cross-arm', position: [14, 38, 12], target: [6, 35, 0] },
+        { name: 'Leg and foundation', position: [10, 3, 10], target: [3, 1.5, 3] },
+        { name: 'Down the line', position: [30, 30, -260], target: [0, 30, 0] },
+      ],
+      fly: { speed: 14 },
+      noShadow: ['terrain'],
+      heat: { label: 'Member utilisation σ / f', ticks: ['0', '0.25', '0.5', '0.75', '1.0'], interval: 3000, hotLabel: 'Members with utilisation ≥ 0.9' },
+      photo: {
+        idScale: 10, start: 1,
+        rings: [{ dir: 'tt/r0', n: 48, label: 'Low 5°' }, { dir: 'tt/r1', n: 48, label: 'Mid 22°' }, { dir: 'tt/r2', n: 48, label: 'High 50°' }],
+        parts: {
+          1: { title: 'Leg main member', note: 'Four main leg members carrying the overturning moment' }, 2: { title: 'Body bracing and diaphragms', note: 'X-bracing carrying horizontal shear' },
+          3: { title: 'Conductor cross-arms', note: 'Three cross-arm levels, the middle one longest' }, 4: { title: 'Earth-wire peak', note: 'OPGW and earth wire at the peak' },
+          5: { title: 'Composite insulator string', note: 'Silicone sheds, I-string suspension, about 2.7 m' }, 6: { title: 'Fittings', note: 'Attachment points, yoke plates, clamps' },
+          7: { title: 'Foundations', note: 'Concrete foundation chimneys' }, 8: { title: 'Phase A conductor', note: 'Upper arm, twin-bundle ACSR' },
+          9: { title: 'Phase B conductor', note: 'Middle arm, twin-bundle ACSR' }, 10: { title: 'Phase C conductor', note: 'Lower arm, twin-bundle ACSR' },
+          11: { title: 'Earth wire', note: 'OPGW earth wire' }, 12: { title: 'Spacers', note: 'Spacers for twin-bundle conductors' },
+          13: { title: 'Ground', background: true }, 14: { title: 'Hedgerows', background: true }, 15: { title: 'Tree trunks', background: true },
+          20: { title: 'Adjacent tower', note: 'Neighbouring spans on the same line' }, 21: { title: 'Adjacent tower', note: 'Neighbouring spans on the same line' },
+          23: { title: 'Adjacent tower', note: 'Neighbouring spans on the same line' }, 24: { title: 'Adjacent tower', note: 'Neighbouring spans on the same line' } },
+      },
+      films: [
+        { src: 'film/fly_line.mp4', title: 'Fly along the line · 1080p · 9 s', rows: [['Quality', 'std/final'], ['Resolution', '1920×1080'], ['Frames', '216']], note: 'From the next tower along the conductors to the main tower.' },
+        { src: 'film/orbit_720p.mp4', title: 'Drone orbit · 720p · 6 s', rows: [['Quality', 'std/final'], ['Resolution', '1280×720'], ['Render time', '155 s (M2 Pro)']], note: 'A 70° orbit.' },
+      ],
+      timings: [['First initialisation · MacBook M2 Pro', '—', '—', '115 s'], ['First initialisation · Mac Studio M4 Max', '—', '—', '70 s'],
+        ['Orbit film, 144 frames · MacBook', 'std/final', '1280×720', '155 s'], ['Orbit film, 144 frames · Mac Studio', 'std/final', '1280×720', '34 s'],
+        ['Low ring, 48 frames + ID layer · MacBook', 'std/final', '1280×720', '49 s'], ['Mid ring, 48 frames + ID layer · Mac Studio', 'std/final', '1280×720', '21 s'],
+        ['High ring, 48 frames + ID layer · Mac Studio', 'std/final', '1280×720', '12 s'], ['Line fly-through, 216 frames · MacBook', 'std/final', '1920×1080', '460 s']],
+      timingsNote: 'Two workstations take jobs from one render queue. For the same 144-frame film, the M4 Max machine is about 4.6 times faster.',
+      extra: { title: 'Which output, which tool', head: ['Output', 'Tool', 'Note'], rows: [
+        ['Films and demonstration videos', 'Vork', 'Ray-traced offline'],
+        ['Photoreal pages you can turn and click', 'Vork turntable rings + ID layer', 'Second tab on this page'],
+        ['Live twin inside the software', 'three.js WebGPU', 'First tab on this page; F to fly'],
+        ['Real sites and equipment', 'Gaussian splatting', 'Spark / three.js'],
+        ['Training data for world models', 'Vork depth, segmentation and camera layers', 'Physically consistent synthetic data']] },
+      credits: 'Sky lighting: Poly Haven “Kloofendal 48d Partly Cloudy (Pure Sky)”, CC0. Ground texture: Poly Haven “Aerial Grass Rock”, CC0. The tower, insulators, conductors and terrain are procedurally generated illustrative models, not design drawings. Live view: three.js (MIT). Photoreal frames and films: Vork 0.2.0 research preview.',
+    },
+
+    async init(ctx) {
+      members = (await fetch('data/members.json').then((r) => r.json())).members;
+      ctx.heatRanges = members.map((m) => ({ mesh: 'hero_' + m.group, v0: m.v0, vn: m.vn, key: m.id }));
+    },
+
+    step(ctx, first) {
+      const t = performance.now() / 1000, gust = first ? 0 : (Math.random() - 0.5) * 7;
+      wind.v = Math.max(12, 27 + 9 * Math.sin(t / 11) + gust); wind.dir = 8 * Math.sin(t / 17) + (Math.random() - 0.5) * 6;
+      const q = (wind.v / 35) ** 2, dirx = Math.cos(wind.dir * Math.PI / 180);
+      const values = {}; let maxU = 0, maxI = 0; const hot = [];
+      for (const m of members) { const u = util(m, q, dirx); values[m.id] = u; if (u > maxU) { maxU = u; maxI = m.id; } if (u >= 0.9) hot.push(m.id); }
+      hot.sort((a, b) => values[b] - values[a]);
+      const time = new Date().toLocaleTimeString('en-GB', { hour12: false });
+      return {
+        values,
+        hud: [{ text: `Wind ${wind.v.toFixed(1)} m/s` }, { text: `Twin refreshed ${time}` }, ...(hot.length ? [{ text: `${hot.length} members ≥ 0.9`, warn: true }] : [])],
+        state: `<h3>Current state</h3><div class="big">${wind.v.toFixed(1)}<small>m/s</small></div><dl class="readout">
+          <dt>Wind direction</dt><dd>across the line ${wind.dir >= 0 ? '+' : ''}${wind.dir.toFixed(0)}°</dd><dt>Peak utilisation</dt><dd>${maxU.toFixed(2)} · #${maxI}</dd>
+          <dt>Members ≥ 0.9</dt><dd>${hot.length}</dd><dt>Refresh</dt><dd>every 3 s</dd></dl>`,
+        hot: hot.slice(0, 30).map((i) => ({ key: i, label: `#${i} ${KIND[members[i].kind] || ''}`, value: values[i].toFixed(2) })),
+      };
+    },
+
+    resolve(ctx, hit) {
+      const n = hit.object.name;
+      if (n.startsWith('hero_') && GROUP[n.slice(5)]) {
+        const g = n.slice(5), v = hit.face.a;
+        const m = members.find((mm) => mm.group === g && v >= mm.v0 && v < mm.v0 + mm.vn);
+        return m ? m.id : null;
+      }
+      return NODE[n] ? 'node:' + n : null;
+    },
+
+    describe(ctx, key) {
+      if (typeof key === 'string') {
+        const [t, note] = NODE[key.slice(5)] || ['—', ''];
+        return { rows: [['Part', t], ['Note', note]] };
+      }
+      const m = members[key]; if (!m) return null;
+      const len = Math.hypot(m.b[0] - m.a[0], m.b[1] - m.a[1], m.b[2] - m.a[2]);
+      const u = ctx.values[key] ?? 0;
+      const c = [(m.a[0] + m.b[0]) / 2, (m.a[1] + m.b[1]) / 2 + H0, (m.a[2] + m.b[2]) / 2];
+      return { center: c, radius: Math.max(2, len), rows: [['Member', '#' + m.id], ['Location', GROUP[m.group]], ['Type', KIND[m.kind] || m.kind], ['Section', spec(m.size)],
+        ['Length', len.toFixed(2) + ' m'], ['Height', ((m.a[1] + m.b[1]) / 2).toFixed(1) + ' m'],
+        ['Utilisation', `<span style="color:${u >= 0.9 ? 'var(--hot)' : 'inherit'}">${u.toFixed(2)}</span>`]] };
+    },
+
+    tooltip(ctx, key) {
+      if (typeof key === 'string') return (NODE[key.slice(5)] || ['—'])[0];
+      const m = members[key];
+      return `#${m.id} ${KIND[m.kind] || ''} · ${spec(m.size)} · utilisation ${(ctx.values[key] ?? 0).toFixed(2)}`;
+    },
+  };
+})();
+
+</script>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.webgpu.js",
+  "three/webgpu": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.webgpu.js",
+  "three/tsl": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.tsl.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
+} }
+</script>
+
+<script type="module">
+import * as THREE from 'three/webgpu';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { SunLight } from 'three/addons/lights/SunLight.js';
+import { SunLightNode } from 'three/addons/lights/SunLightNode.js';
+
+const P = window.TWIN;                      // project block: config + hooks
+const C = P.config;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const rows = (pairs) => pairs.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('');
+
+/* ---------- static text ---------- */
+$('ttl').innerHTML = `${esc(C.title)}<small>${esc(C.subtitle)}</small>`;
+for (const [k, v] of C.pills || []) $('pills').insertAdjacentHTML('beforeend', `<span class="pill">${esc(k)} <b>${esc(v)}</b></span>`);
+$('tab-live').firstChild.textContent = C.liveTab || 'Live twin';
+$('dataNote').textContent = C.dataNote || '';
+$('legendLabel').textContent = C.heat ? C.heat.label : '';
+$('legendTicks').innerHTML = (C.heat ? C.heat.ticks : []).map((t) => `<span>${esc(t)}</span>`).join('');
+if (!C.heat) { $('legend').hidden = true; $('modeBox').hidden = true; }
+$('hotLabel').textContent = (C.heat && C.heat.hotLabel) || 'Needs attention';
+$('timingsNote').textContent = C.timingsNote || '';
+$('timings').innerHTML = (C.timings || []).map((r) => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td class="n">${esc(r[2])}</td><td class="n">${esc(r[3])}</td></tr>`).join('');
+if (C.extra) {
+  $('extraTitle').textContent = C.extra.title;
+  $('extraBody').innerHTML = `<table><thead><tr>${C.extra.head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${C.extra.rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+} else $('extraCard').hidden = true;
+$('credits').innerHTML = C.credits || '';
+$('photoNote').textContent = (C.photo && C.photo.note) || $('photoNote').textContent;
+
+/* ---------- tabs with hash routing ---------- */
+const TABS = ['live', 'photo', 'film'];
+if (!C.photo) $('tab-photo').hidden = true;
+if (!C.films || !C.films.length) $('tab-film').hidden = true;
+function show(name) {
+  if (!TABS.includes(name) || $('tab-' + name).hidden) name = 'live';
+  for (const k of TABS) { $('tab-' + k).setAttribute('aria-selected', k === name); $('view-' + k).hidden = k !== name; }
+  if (name !== 'film') $('film').pause();
+  if (name === 'photo') loadPhoto();
+  if (name === 'live') resize();
+}
+for (const k of TABS) $('tab-' + k).addEventListener('click', () => { location.hash = k; show(k); });
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+
+/* ---------- colour map (Turbo) ---------- */
+function turbo(t) {
+  t = Math.min(1, Math.max(0, t));
+  const r = 0.13572138 + t * (4.61539260 + t * (-42.66032258 + t * (132.13108234 + t * (-152.94239396 + t * 59.28637943))));
+  const g = 0.09140261 + t * (2.19418839 + t * (4.84296658 + t * (-14.18503333 + t * (4.27729857 + t * 2.82956604))));
+  const b = 0.10667330 + t * (12.64194608 + t * (-60.58204836 + t * (110.36276771 + t * (-89.90310912 + t * 27.34824973))));
+  return [Math.min(1, Math.max(0, r)), Math.min(1, Math.max(0, g)), Math.min(1, Math.max(0, b))];
+}
+
+async function fetchB64(urls) {
+  const parts = await Promise.all(urls.map((u) => fetch(u).then((r) => { if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); })));
+  const s = parts.map((p) => p.b64).join('');
+  if (Uint8Array.fromBase64) return Uint8Array.fromBase64(s).buffer;
+  const bin = atob(s), u8 = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+  return u8.buffer;
+}
+
+/* ================= LIVE ================= */
+const stage = $('liveStage');
+let renderer, scene, camera, controls, root, mode = C.heat ? 'heat' : 'real';
+const ctx = { THREE, C, meshes: {}, realMats: new Map(), heatMat: null, values: {}, shown: {}, hud: {}, picked: null };
+let lastStep = 0, fly = false;
+
+async function initLive() {
+  renderer = new THREE.WebGPURenderer({ antialias: true });
+  await renderer.init();
+  $('backend').textContent = renderer.backend.isWebGPUBackend ? 'WebGPU' : 'WebGL 2';
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.toneMapping = THREE.AgXToneMapping;
+  renderer.toneMappingExposure = C.env.exposure ?? 1;
+  renderer.shadowMap.enabled = true;
+  stage.prepend(renderer.domElement);
+
+  scene = new THREE.Scene();
+  if (C.env.fog) scene.fog = new THREE.FogExp2(new THREE.Color(C.env.fog.color), C.env.fog.density);
+  const cam = C.camera;
+  camera = new THREE.PerspectiveCamera(cam.fov, 16 / 9, cam.near ?? 0.1, cam.far ?? 2000);
+  camera.position.fromArray(cam.position);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.target.fromArray(cam.target);
+  controls.enableDamping = true;
+  controls.screenSpacePanning = true;
+  controls.minPolarAngle = 0.001; controls.maxPolarAngle = Math.PI - 0.001;   // every angle, including from below
+  controls.minDistance = cam.minDistance ?? 0.2; controls.maxDistance = cam.maxDistance ?? 2000;
+  controls.keys = { LEFT: 'KeyJ', UP: 'KeyI', RIGHT: 'KeyL', BOTTOM: 'KeyK' };
+
+  const [hdrBuf, glbBuf] = await Promise.all([fetchB64(C.env.hdr), fetchB64(C.model)]);
+  const hd = new HDRLoader().parse(hdrBuf);
+  const env = new THREE.DataTexture(hd.data, hd.width, hd.height, THREE.RGBAFormat, hd.type);
+  env.colorSpace = THREE.LinearSRGBColorSpace; env.minFilter = env.magFilter = THREE.LinearFilter;
+  env.generateMipmaps = false; env.flipY = true; env.needsUpdate = true;
+  env.mapping = THREE.EquirectangularReflectionMapping;
+  scene.environment = env; scene.environmentIntensity = C.env.intensity ?? 1;
+  scene.background = C.env.background === false ? new THREE.Color(C.env.backgroundColor || '#20262c') : env;
+  if (C.env.backgroundBlur) scene.backgroundBlurriness = C.env.backgroundBlur;
+
+  if (C.env.sun) {
+    const dir = C.env.sun.dir ? new THREE.Vector3().fromArray(C.env.sun.dir).normalize() : findSun(env);
+    let sun;
+    try {
+      renderer.library.addLight(SunLightNode, SunLight);
+      sun = new SunLight(0xfff3e0, C.env.sun.intensity ?? 3);
+      sun.shadow.mapSize.set(2048, 2048); sun.shadow.camera.far = C.env.sun.far ?? 400;
+    } catch (e) {
+      sun = new THREE.DirectionalLight(0xfff3e0, C.env.sun.intensity ?? 3);
+      sun.shadow.mapSize.set(4096, 4096);
+    }
+    sun.position.copy(dir).multiplyScalar(200); sun.castShadow = true; scene.add(sun);
+  }
+  for (const l of C.env.lights || []) {                       // extra point lights (factory ceilings etc.)
+    const lt = new THREE.PointLight(l.color || 0xffffff, l.intensity, l.range || 0);
+    lt.position.fromArray(l.pos); scene.add(lt);
+  }
+
+  const gltf = await new GLTFLoader().parseAsync(glbBuf, 'data/');
+  root = gltf.scene;
+  root.traverse((o) => {
+    if (!o.isMesh) return;
+    ctx.meshes[o.name] = o;
+    o.castShadow = !(C.noShadow || []).some((p) => o.name.startsWith(p));
+    o.receiveShadow = true;
+    ctx.realMats.set(o, o.material);
+    if (o.geometry.attributes.color) o.geometry.userData.realColors = o.geometry.attributes.color.array.slice();
+  });
+  scene.add(root);
+  ctx.scene = scene; ctx.root = root; ctx.camera = camera; ctx.renderer = renderer; ctx.gltf = gltf;
+  ctx.heatMat = new THREE.MeshStandardMaterial({ vertexColors: true, metalness: 0, roughness: 0.55 });
+  ctx.heatMatFlat = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0, roughness: 0.55 });
+  if (P.init) await P.init(ctx);
+  buildViews();
+  step(true);
+  setMode(mode);
+  $('liveLoading').remove();
+  resize();
+  renderer.setAnimationLoop(tick);
+}
+
+function findSun(tex) {
+  const { data, width: W, height: H } = tex.image;
+  const half = data instanceof Uint16Array;
+  const val = (i) => (half ? THREE.DataUtils.fromHalfFloat(data[i]) : data[i]);
+  let best = -1, bi = 0;
+  for (let y = 0; y < H / 2; y++) for (let x = 0; x < W; x++) {
+    const i = (y * W + x) * 4, l = 0.2126 * val(i) + 0.7152 * val(i + 1) + 0.0722 * val(i + 2);
+    if (l > best) { best = l; bi = y * W + x; }
+  }
+  const u = (bi % W + 0.5) / W, v = 1 - (Math.floor(bi / W) + 0.5) / H;
+  const lat = (v - 0.5) * Math.PI, lon = (u - 0.5) * 2 * Math.PI;
+  const d = new THREE.Vector3(Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon));
+  if (d.y < 0.25) d.y = 0.25;
+  return d.normalize();
+}
+
+/* ----- heat (colour map) ----- */
+const tmpC = new THREE.Color();
+function colorOf(v) {
+  const [lo, hi] = (C.heat && C.heat.range) || [0, 1];
+  const [r, g, b] = turbo((v - lo) / (hi - lo)); tmpC.setRGB(r, g, b, THREE.SRGBColorSpace); return tmpC;
+}
+function paintHeat() {
+  if (!C.heat || mode !== 'heat') return;
+  // ranges: [{mesh, v0, vn, key}] painted per vertex range; whole: {meshName: key} tinted per mesh
+  for (const r of ctx.heatRanges || []) {
+    const m = ctx.meshes[r.mesh]; if (!m) continue;
+    const col = m.geometry.attributes.color;
+    const c = r.key === ctx.picked ? tmpC.setRGB(1, 1, 1) : colorOf(ctx.shown[r.key] ?? 0);
+    for (let v = r.v0; v < r.v0 + r.vn; v++) col.setXYZ(v, c.r, c.g, c.b);
+    col.needsUpdate = true;
+  }
+  for (const [name, key] of Object.entries(ctx.heatWhole || {})) {
+    const m = ctx.meshes[name]; if (!m) continue;
+    if (!m.userData.heatMat) m.userData.heatMat = ctx.heatMatFlat.clone();
+    m.material = m.userData.heatMat;
+    m.material.color.copy(key === ctx.picked ? tmpC.setRGB(1, 1, 1) : colorOf(ctx.shown[key] ?? 0));
+  }
+}
+function setMode(m) {
+  mode = C.heat ? m : 'real';
+  $('modeHeat').setAttribute('aria-pressed', mode === 'heat');
+  $('modeReal').setAttribute('aria-pressed', mode === 'real');
+  const rangeMeshes = new Set((ctx.heatRanges || []).map((r) => r.mesh));
+  for (const [o, mat] of ctx.realMats) {
+    if (mode === 'heat' && rangeMeshes.has(o.name)) { o.material = ctx.heatMat; continue; }
+    if (mode === 'heat' && ctx.heatWhole && o.name in ctx.heatWhole) continue;
+    o.material = mat;
+    if (o.geometry.userData.realColors) { o.geometry.attributes.color.array.set(o.geometry.userData.realColors); o.geometry.attributes.color.needsUpdate = true; }
+  }
+  paintHeat();
+}
+$('modeHeat').addEventListener('click', () => setMode('heat'));
+$('modeReal').addEventListener('click', () => setMode('real'));
+
+function step(first) {
+  if (!P.step) return;
+  const out = P.step(ctx, first) || {};
+  ctx.values = out.values || {};
+  if (first) ctx.shown = { ...ctx.values };
+  $('liveHud').innerHTML = (out.hud || []).map((h) => `<span class="${h.warn ? 'warn' : ''}">${esc(h.text)}</span>`).join('');
+  $('stateBox').innerHTML = out.state || '';
+  const hot = out.hot || [];
+  $('hotList').innerHTML = hot.length ? hot.map((h) => `<div data-key="${esc(h.key)}"><span>${esc(h.label)}</span><span>${esc(h.value)}</span></div>`).join('') : '<div><span>None</span><span>—</span></div>';
+  lastStep = performance.now();
+  if (ctx.picked != null) showPick(ctx.picked);
+}
+$('hotList').addEventListener('click', (e) => { const d = e.target.closest('[data-key]'); if (d) showPick(isNaN(+d.dataset.key) ? d.dataset.key : +d.dataset.key, true); });
+
+/* ----- picking ----- */
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+function hitAt(ev) {
+  const r = renderer.domElement.getBoundingClientRect();
+  ndc.set(((ev.clientX - r.left) / r.width) * 2 - 1, -((ev.clientY - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(ndc, camera);
+  return ray.intersectObject(root, true).find((h) => h.object.visible && P.resolve(ctx, h) != null) || null;
+}
+function showPick(key, focus) {
+  ctx.picked = key;
+  const d = P.describe(ctx, key);
+  if (!d) return;
+  $('pick').innerHTML = rows(d.rows);
+  if (focus && d.center) flyTo(new THREE.Vector3().fromArray(d.center), d.radius || 5);
+  paintHeat();
+}
+let downAt = null, lastClick = 0;
+stage.addEventListener('pointerdown', (e) => { downAt = [e.clientX, e.clientY]; stage.focus({ preventScroll: true }); });
+stage.addEventListener('pointerup', (e) => {
+  if (!downAt || !renderer) return;
+  if (Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) < 5) {
+    const h = hitAt(e), now = performance.now();
+    if (h) {
+      const key = P.resolve(ctx, h);
+      const dbl = now - lastClick < 320; lastClick = now;
+      showPick(key, false);
+      if (dbl) flyTo(h.point, Math.max(3, P.describe(ctx, key)?.radius || 6));
+    }
+  }
+  downAt = null;
+});
+let tipT = 0;
+stage.addEventListener('pointermove', (e) => {
+  if (!renderer || e.pointerType !== 'mouse' || e.buttons) { $('liveTip').hidden = true; return; }
+  const now = performance.now(); if (now - tipT < 60) return; tipT = now;
+  const h = hitAt(e), tip = $('liveTip');
+  if (!h) { tip.hidden = true; return; }
+  const r = stage.getBoundingClientRect();
+  tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px';
+  tip.textContent = P.tooltip(ctx, P.resolve(ctx, h)); tip.hidden = false;
+});
+stage.addEventListener('pointerleave', () => { $('liveTip').hidden = true; });
+
+/* ----- views, focus, reset ----- */
+let tween = null;
+function flyTo(target, dist, fromDir) {
+  if (fly) setFly(false);
+  const dir = fromDir ? new THREE.Vector3().fromArray(fromDir).normalize() : camera.position.clone().sub(controls.target).normalize();
+  tween = { t0: performance.now(), dur: 900, p0: camera.position.clone(), q0: controls.target.clone(),
+    p1: target.clone().add(dir.multiplyScalar(dist * 2.2)), q1: target.clone() };
+}
+function goView(v) {
+  if (fly) setFly(false);
+  tween = { t0: performance.now(), dur: 1000, p0: camera.position.clone(), q0: controls.target.clone(),
+    p1: new THREE.Vector3().fromArray(v.position), q1: new THREE.Vector3().fromArray(v.target) };
+}
+function buildViews() {
+  const box = $('views');
+  for (const v of C.views || []) {
+    const b = document.createElement('button'); b.textContent = v.name; b.addEventListener('click', () => goView(v)); box.appendChild(b);
+  }
+}
+$('resetBtn').addEventListener('click', () => goView({ position: C.camera.position, target: C.camera.target }));
+
+/* ----- first-person fly: W/S or ↑/↓ forward-back, A/D strafe, ←/→ turn, Q/E down-up, Shift fast, drag to look ----- */
+const keys = new Set();
+const flySpeed = (C.fly && C.fly.speed) || 10;
+let yaw = 0, pitch = 0, lookDrag = null;
+function setFly(on) {
+  fly = on;
+  $('flyBtn').setAttribute('aria-pressed', on);
+  $('keys').hidden = !on;
+  controls.enabled = !on;
+  if (on) {
+    const d = new THREE.Vector3(); camera.getWorldDirection(d);
+    yaw = Math.atan2(-d.x, -d.z); pitch = Math.asin(Math.max(-1, Math.min(1, d.y)));
+    stage.focus({ preventScroll: true });
+  } else {
+    const d = new THREE.Vector3(); camera.getWorldDirection(d);
+    controls.target.copy(camera.position).add(d.multiplyScalar(Math.max(4, flySpeed * 1.5)));
+  }
+}
+$('keys').innerHTML = '<b>W/S ↑/↓</b> forward / back　<b>A/D</b> left / right　<b>←/→</b> Turn<br><b>Q/E</b> down / up　<b>Shift</b> faster　<b>Drag</b> look around　<b>F</b> Exit fly mode';
+$('flyBtn').addEventListener('click', () => setFly(!fly));
+const FLYKEYS = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ShiftLeft', 'ShiftRight', 'Space']);
+stage.addEventListener('keydown', (e) => {
+  if (e.code === 'KeyF') { setFly(!fly); e.preventDefault(); return; }
+  if (!fly && /^(Key[WASDQE]|Arrow)/.test(e.code)) setFly(true);
+  if (fly && FLYKEYS.has(e.code)) { keys.add(e.code); e.preventDefault(); }
+});
+stage.addEventListener('keyup', (e) => keys.delete(e.code));
+stage.addEventListener('blur', () => keys.clear());
+stage.addEventListener('pointerdown', (e) => { if (fly) { lookDrag = [e.clientX, e.clientY, yaw, pitch]; stage.setPointerCapture(e.pointerId); } });
+stage.addEventListener('pointermove', (e) => {
+  if (!fly || !lookDrag) return;
+  yaw = lookDrag[2] - (e.clientX - lookDrag[0]) * 0.004;
+  pitch = Math.max(-1.5, Math.min(1.5, lookDrag[3] - (e.clientY - lookDrag[1]) * 0.004));
+});
+stage.addEventListener('pointerup', () => { lookDrag = null; });
+
+let tPrev = performance.now();
+function tick() {
+  const now = performance.now(), dt = Math.min(0.05, (now - tPrev) / 1000); tPrev = now;
+  if (now - lastStep > (C.heat ? C.heat.interval : 3000)) step(false);
+  if ($('view-live').hidden || !renderer.domElement.width || !renderer.domElement.height) return;   // nothing to draw into
+  if (C.heat && mode === 'heat') {
+    let moving = false;
+    for (const k in ctx.values) {
+      const d = ctx.values[k] - (ctx.shown[k] ?? 0);
+      if (Math.abs(d) > 0.002) { ctx.shown[k] = (ctx.shown[k] ?? 0) + d * 0.08; moving = true; }
+    }
+    if (moving) paintHeat();
+  }
+  if (P.tick) P.tick(ctx, dt, now / 1000);
+  if (tween) {
+    const k = Math.min(1, (now - tween.t0) / tween.dur), e = k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
+    camera.position.lerpVectors(tween.p0, tween.p1, e); controls.target.lerpVectors(tween.q0, tween.q1, e);
+    if (k >= 1) tween = null;
+  }
+  if (fly) {
+    if (keys.has('ArrowLeft')) yaw += 1.4 * dt;
+    if (keys.has('ArrowRight')) yaw -= 1.4 * dt;
+    camera.quaternion.setFromEuler(new THREE.Euler(pitch, yaw, 0, 'YXZ'));
+    const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
+    const right = new THREE.Vector3(1, 0, 0).applyQuaternion(camera.quaternion);
+    const v = new THREE.Vector3();
+    if (keys.has('KeyW') || keys.has('ArrowUp')) v.add(fwd);
+    if (keys.has('KeyS') || keys.has('ArrowDown')) v.sub(fwd);
+    if (keys.has('KeyD')) v.add(right);
+    if (keys.has('KeyA')) v.sub(right);
+    if (keys.has('KeyE') || keys.has('Space')) v.y += 1;
+    if (keys.has('KeyQ')) v.y -= 1;
+    if (v.lengthSq()) camera.position.addScaledVector(v.normalize(), flySpeed * dt * (keys.has('ShiftLeft') || keys.has('ShiftRight') ? 4 : 1));
+  } else controls.update();
+  renderer.render(scene, camera);
+}
+
+function resize() {
+  if (!renderer || !camera) return;
+  const r = stage.getBoundingClientRect();
+  if (!r.width) return;
+  renderer.setSize(r.width, r.height, false);
+  camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(stage);
+
+/* ================= PHOTO (Vork rings) ================= */
+const PH = C.photo;
+const pc = $('photoCanvas'), pctx = pc.getContext('2d');
+const mc = $('maskCanvas'), mctx = mc.getContext('2d');
+let ring = 0, fi = 0, sel = 0, spin = false, photoStarted = false;
+const frames = [], ids = [], idData = [];
+function ringFrames(r) { return PH.rings[r].n; }
+function loadPhoto() {
+  if (!PH || photoStarted) return;
+  photoStarted = true;
+  fetch('data/manifest.json').then((r) => r.ok ? r.json() : null).then((m) => { if (m && m.idScale) { PH.idScale = m.idScale; idData.forEach((a) => a && (a.length = 0)); drawMask(); } }).catch(() => {});
+  ring = PH.start || 0;
+  const seg = $('ringSeg');
+  PH.rings.forEach((rg, r) => {
+    const b = document.createElement('button'); b.textContent = rg.label; b.setAttribute('aria-pressed', r === ring);
+    b.addEventListener('click', () => setRing(r)); seg.appendChild(b);
+    frames[r] = []; ids[r] = []; idData[r] = [];
+  });
+  let done = 0; const total = PH.rings.reduce((a, r) => a + r.n, 0);
+  const order = [ring, ...PH.rings.map((_, i) => i).filter((i) => i !== ring)];
+  for (const r of order) for (let k = 0; k < PH.rings[r].n; k++) {
+    const pad = String(k).padStart(3, '0');
+    const im = new Image(); im.decoding = 'async';
+    im.onload = () => { done++; if (r === ring && k === fi) draw(); $('photoLoading').textContent = `Loading photoreal turntable… ${done}/${total}`; if (done === total || (r === ring && done >= PH.rings[ring].n)) $('photoLoading').hidden = true; };
+    im.src = `${PH.rings[r].dir}/f_${pad}.jpg`; frames[r][k] = im;
+    const idm = new Image(); idm.src = `${PH.rings[r].dir}/id_${pad}.png`; ids[r][k] = idm;
+  }
+  setRing(ring);
+}
+function setRing(r) {
+  const frac = fi / ringFrames(ring);
+  ring = Math.max(0, Math.min(PH.rings.length - 1, r));
+  fi = Math.round(frac * ringFrames(ring)) % ringFrames(ring);
+  [...$('ringSeg').children].forEach((b, i) => b.setAttribute('aria-pressed', i === ring));
+  $('photoSlider').max = ringFrames(ring) - 1;
+  draw();
+}
+function idAt() {
+  if (idData[ring][fi]) return idData[ring][fi];
+  const im = ids[ring][fi]; if (!im || !im.complete || !im.naturalWidth) return null;
+  const c = document.createElement('canvas'); c.width = im.naturalWidth; c.height = im.naturalHeight;
+  const x = c.getContext('2d', { willReadFrequently: true }); x.drawImage(im, 0, 0);
+  return (idData[ring][fi] = x.getImageData(0, 0, c.width, c.height));
+}
+function drawMask() {
+  mctx.clearRect(0, 0, mc.width, mc.height);
+  if (!sel) return;
+  const d = idAt(); if (!d) return;
+  if (mc.width !== d.width) { mc.width = d.width; mc.height = d.height; }
+  const out = mctx.createImageData(d.width, d.height);
+  for (let p = 0; p < d.data.length; p += 4) if (Math.round(d.data[p] / PH.idScale) === sel) { out.data[p] = 70; out.data[p + 1] = 214; out.data[p + 2] = 235; out.data[p + 3] = 150; }
+  mctx.putImageData(out, 0, 0);
+}
+function draw() {
+  const im = frames[ring] && frames[ring][fi]; if (!im || !im.complete) return;
+  pctx.drawImage(im, 0, 0, pc.width, pc.height);
+  const deg = Math.round(fi * 360 / ringFrames(ring));
+  $('photoAngle').textContent = `Azimuth ${deg}° · ${PH.rings[ring].label}`;
+  $('photoSlider').value = fi;
+  drawMask();
+}
+function setFrame(k) { const n = ringFrames(ring); fi = ((k % n) + n) % n; draw(); }
+function pickPhoto(ev) {
+  const r = pc.getBoundingClientRect(), d = idAt(); if (!d) return 0;
+  const x = Math.floor((ev.clientX - r.left) / r.width * d.width), y = Math.floor((ev.clientY - r.top) / r.height * d.height);
+  const at = (xx, yy) => (xx < 0 || yy < 0 || xx >= d.width || yy >= d.height) ? 0 : Math.round(d.data[(yy * d.width + xx) * 4] / PH.idScale);
+  const ok = (v) => PH.parts[v] && !PH.parts[v].background;
+  const c = at(x, y); if (ok(c)) return c;
+  for (let rad = 1; rad <= 4; rad++) for (let dy = -rad; dy <= rad; dy++) for (let dx = -rad; dx <= rad; dx++) { const v = at(x + dx, y + dy); if (ok(v)) return v; }
+  return c;
+}
+const ps = $('photoStage');
+let pDown = null;
+ps.addEventListener('pointerdown', (e) => { pDown = [e.clientX, e.clientY, fi, ring]; ps.setPointerCapture(e.pointerId); spin = false; $('spinBtn').setAttribute('aria-pressed', 'false'); ps.focus({ preventScroll: true }); });
+ps.addEventListener('pointermove', (e) => {
+  if (pDown) {
+    const dx = e.clientX - pDown[0], dy = e.clientY - pDown[1];
+    const nr = pDown[3] + Math.round(dy / 60);
+    if (nr !== ring && nr >= 0 && nr < PH.rings.length) setRing(nr);
+    setFrame(Math.round(pDown[2] * ringFrames(ring) / ringFrames(pDown[3])) - Math.round(dx / 7));
+    return;
+  }
+  if (e.pointerType !== 'mouse') return;
+  const id = pickPhoto(e), tip = $('photoTip'), part = PH.parts[id];
+  if (!part || part.background) { tip.hidden = true; return; }
+  const r = ps.getBoundingClientRect();
+  tip.style.left = (e.clientX - r.left) + 'px'; tip.style.top = (e.clientY - r.top) + 'px'; tip.textContent = part.title; tip.hidden = false;
+});
+ps.addEventListener('pointerup', (e) => {
+  if (pDown && Math.hypot(e.clientX - pDown[0], e.clientY - pDown[1]) < 5) {
+    const id = pickPhoto(e), part = PH.parts[id];
+    sel = part && !part.background ? id : 0;
+    $('partName').textContent = sel ? part.title : '—';
+    $('partNote').textContent = sel ? (part.note || '') : 'Click a part in the image.';
+    $('partRows').innerHTML = sel && part.rows ? rows(part.rows) : '';
+    drawMask();
+  }
+  pDown = null;
+});
+ps.addEventListener('pointerleave', () => { $('photoTip').hidden = true; });
+ps.addEventListener('keydown', (e) => {
+  const m = { ArrowLeft: () => setFrame(fi - 1), ArrowRight: () => setFrame(fi + 1), ArrowUp: () => setRing(ring + 1), ArrowDown: () => setRing(ring - 1),
+    KeyA: () => setFrame(fi - 1), KeyD: () => setFrame(fi + 1), KeyW: () => setRing(ring + 1), KeyS: () => setRing(ring - 1) }[e.code];
+  if (m) { m(); e.preventDefault(); }
+});
+$('photoSlider').addEventListener('input', (e) => setFrame(+e.target.value));
+$('spinBtn').addEventListener('click', () => { spin = !spin; $('spinBtn').setAttribute('aria-pressed', spin); });
+setInterval(() => { if (spin && !$('view-photo').hidden) setFrame(fi + 1); }, 1000 / 12);
+
+/* ================= FILM ================= */
+const film = $('film');
+function setFilm(i) {
+  const f = C.films[i];
+  film.src = f.src;
+  [...$('films').children].forEach((b, j) => b.setAttribute('aria-pressed', i === j));
+  $('filmRows').innerHTML = rows(f.rows || []);
+  $('filmNote').textContent = f.note || '';
+}
+(C.films || []).forEach((f, i) => {
+  const b = document.createElement('button'); b.textContent = f.title; b.addEventListener('click', () => { setFilm(i); film.play().catch(() => {}); });
+  $('films').appendChild(b);
+});
+if (C.films && C.films.length) setFilm(0);
+
+show(location.hash.slice(1));
+initLive().catch((e) => {
+  console.error(e);
+  $('liveLoading').textContent = 'The live 3D view could not load: ' + (e && e.message ? e.message : e) + '. Please use a recent browser Chrome / Edge / Safari。';
+  $('backend').textContent = 'not available';
+});
+</script>

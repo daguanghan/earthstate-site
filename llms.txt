@@ -1,0 +1,24 @@
+# EarthState
+
+> World models for infrastructure. EarthState is the independent engineering practice of Dr.-Ing. Daguang Han, based in the United Kingdom, with a research character. It builds digital twins of real infrastructure (three twin platforms for ageing steel towers, overhead lines and facilities), uses them in its own advisory work, licenses them to clients and shares them with universities and companies in joint research and innovation projects.
+
+## Pages
+
+- [About](https://earthstate.co.uk/about.html): EarthState is the independent engineering and research practice of Dr.-Ing. Daguang Han, Associate Director of the Transport AI Innovation Centre (TRAICE) at Loughborough University.
+- [Advisory](https://earthstate.co.uk/advisory.html): Capacity and remaining-life assessment, storm and climate resilience, infrastructure AI assurance and digital delivery for infrastructure owners and engineering consultancies.
+- [Contact](https://earthstate.co.uk/contact.html): Request a walkthrough of the EarthState platforms or book a consultation on an ageing asset, a storm question or an AI decision.
+- [Demos](https://earthstate.co.uk/demos/): Try EarthState's twin platforms in the browser: the 3D Lab, the EarthState Twin function tour and analysis demo, and FacilityNexus for authorised testers.
+- [EarthState · World models for infrastructure](https://earthstate.co.uk/): EarthState builds digital twins of real infrastructure, with three twin platforms for ageing steel towers, overhead lines and facilities, and advises infrastructure owners, engineering consultancies and research partners. Every result goes to an engineer for sign-off.
+- [3D Lab](https://earthstate.co.uk/lab/): Interactive 3D views, photoreal turntables and ray-traced films of transmission towers and lines, built from one structural model.
+- [Method](https://earthstate.co.uk/method.html): How EarthState reaches a structural result: drawings and data to a checkable model, code checks to the Eurocodes, a capacity statement and engineer sign-off, with a full audit trail.
+- [FacilityNexus](https://earthstate.co.uk/platforms/facility-twin.html): FacilityNexus, a facility operations twin: a 3D twin base with an event centre, equipment-health diagnostics, an operations knowledge base and an AI assistant on every page.
+- [Platforms](https://earthstate.co.uk/platforms/): EarthState's three twin platforms: EarthState Twin for ageing steel structures, Standfast for storm resilience of overhead lines, and FacilityNexus for facility operations.
+- [Standfast](https://earthstate.co.uk/platforms/standfast.html): Standfast puts a whole overhead line on real terrain under storm loading and shows, tower by tower, how close each structure is to failure, and what strengthening would change.
+- [EarthState Twin](https://earthstate.co.uk/platforms/structural-twin.html): EarthState Twin, a structural digital twin for ageing lattice steel towers: from drawings and inspection data to an auditable twin, a capacity assessment and a ranked repair list for an engineer to sign off.
+- [Privacy and cookies](https://earthstate.co.uk/privacy.html): How this website handles personal data and cookies.
+- [Research and partnerships](https://earthstate.co.uk/research.html): EarthState is a practice with a research character: structural digital twins, world models for infrastructure, joint research and innovation projects with universities and companies, co-authored papers and shared patents.
+- [Work](https://earthstate.co.uk/work.html): Selected work on ageing lattice towers, bridges and infrastructure data, described by asset and decision rather than by client.
+
+## Founder
+
+- [Dr.-Ing. Daguang Han](https://www.daguanghan.com)
