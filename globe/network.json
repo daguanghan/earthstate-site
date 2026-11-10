@@ -1,5 +1,5 @@
 {
- "_about": "Expert network: places of academic experts and research partners (no names). Projects: the founder's project experience, from the public Projects page of daguanghan.com; positions in China are indicative by region only.",
+ "_about": "Resource network: places of academic experts and research partners (no names). Projects: research and development, and consulting, from the founder's archive; client names are not shown and positions in China are indicative by region.",
  "hub": {
   "lat": 52.5,
   "lon": -1.5,
@@ -271,6 +271,48 @@
    "place": "Gainesville, United States",
    "kind": "Academic expert",
    "count": 1
+  },
+  {
+   "lat": 40.0,
+   "lon": 116.33,
+   "place": "Beijing, China",
+   "kind": "Research partner",
+   "count": 1
+  },
+  {
+   "lat": 31.28,
+   "lon": 121.5,
+   "place": "Shanghai, China",
+   "kind": "Research partner",
+   "count": 1
+  },
+  {
+   "lat": 32.11,
+   "lon": 118.96,
+   "place": "Nanjing, China",
+   "kind": "Research partner",
+   "count": 1
+  },
+  {
+   "lat": 29.53,
+   "lon": 106.57,
+   "place": "Chongqing, China",
+   "kind": "Research partner",
+   "count": 1
+  },
+  {
+   "lat": 23.04,
+   "lon": 113.37,
+   "place": "Guangzhou, China",
+   "kind": "Research partner",
+   "count": 1
+  },
+  {
+   "lat": 22.32,
+   "lon": 114.18,
+   "place": "Hong Kong, China",
+   "kind": "Research partner",
+   "count": 1
   }
  ],
  "projects": [
@@ -280,7 +322,17 @@
    "lat": 52.6,
    "lon": -1.5,
    "title": "EarthState Twin and Standfast",
-   "note": "Two AI platforms for the remaining life of infrastructure, developed in 2026"
+   "note": "Two AI platforms for the remaining life of infrastructure, developed in 2026",
+   "source": "EarthState"
+  },
+  {
+   "type": "rd",
+   "country": "United Kingdom",
+   "lat": 52.2,
+   "lon": -1.0,
+   "title": "FacilityNexus",
+   "note": "Facility operations twin with an AI assistant on every page",
+   "source": "EarthState"
   },
   {
    "type": "rd",
@@ -288,7 +340,8 @@
    "lat": 48.08,
    "lon": 11.64,
    "title": "Doctoral research in structural engineering",
-   "note": "Universität der Bundeswehr München"
+   "note": "Universität der Bundeswehr München",
+   "source": "University"
   },
   {
    "type": "rd",
@@ -296,119 +349,44 @@
    "lat": 59.92,
    "lon": 10.73,
    "title": "BIM innovation centre",
-   "note": "Applied BIM research and teaching at OsloMet"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 32.2,
-   "lon": 120.6,
-   "title": "Ageing steel lattice structures under extreme wind",
-   "note": "Three successive commissioned research contracts for a large infrastructure operator"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 31.2,
-   "lon": 121.2,
-   "title": "Facade installation quality by laser scanning and vibrometry",
-   "note": "High-rise office building, large commercial development"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 30.7,
-   "lon": 120.8,
-   "title": "A BIM implementation guideline for a commercial developer",
-   "note": "Information standards, quality checklists and data-sharing rules"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 32.7,
-   "lon": 119.0,
-   "title": "Code clauses turned into machine-checkable rules",
-   "note": "Rule base for automated compliance checking, for a large infrastructure operator"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 29.9,
-   "lon": 106.2,
-   "title": "One expressway operator, three contracts in succession",
-   "note": "BIM and GIS for operation and maintenance, then services, then construction-waste recycling"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 29.2,
-   "lon": 107.1,
-   "title": "A technical lecture, then a sensing contract",
-   "note": "Strain, temperature and vibration sensing for cable structures, for a listed construction group"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 28.4,
-   "lon": 107.9,
-   "title": "Three-dimensional monitoring of a long-span mountain arch bridge",
-   "note": "Laser scanning and BIM through construction"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 30.5,
-   "lon": 107.5,
-   "title": "Digital transformation advice to an airport operator",
-   "note": "Six-month advisory on BIM-based digital delivery"
-  },
-  {
-   "type": "consulting",
-   "country": "China",
-   "lat": 28.8,
-   "lon": 105.6,
-   "title": "Recycled aggregate concrete on a high-speed railway project",
-   "note": "With specialists from KU Leuven on site"
+   "note": "Applied BIM research and teaching at OsloMet",
+   "source": "University"
   },
   {
    "type": "rd",
-   "country": "China",
-   "lat": 31.8,
-   "lon": 118.5,
-   "title": "A digital twin corrected by measurement",
-   "note": "Long-span river bridge, model updated from measurement in service"
+   "country": "Belgium",
+   "lat": 50.88,
+   "lon": 4.7,
+   "title": "Joint research centre with a Belgian university",
+   "note": "Centre-level agreement, built by the research academy",
+   "source": "Research academy"
   },
   {
    "type": "rd",
-   "country": "China",
-   "lat": 31.4,
-   "lon": 117.9,
-   "title": "Large-scale experiments on coupled hazards for long-span structures",
-   "note": "National competitive R&D programme"
+   "country": "Belgium",
+   "lat": 51.05,
+   "lon": 3.72,
+   "title": "Joint laboratory with a Belgian university",
+   "note": "Photonics-based sensing for structural inspection",
+   "source": "Research academy"
   },
   {
    "type": "rd",
-   "country": "China",
-   "lat": 30.5,
-   "lon": 99.5,
-   "title": "Bridges at high altitude and in cold regions",
-   "note": "National Natural Science Foundation key project"
+   "country": "Germany",
+   "lat": 48.15,
+   "lon": 11.57,
+   "title": "Joint centre with a German university",
+   "note": "Electric drive research, centre-level agreement",
+   "source": "Research academy"
   },
   {
    "type": "rd",
-   "country": "China",
-   "lat": 32.3,
-   "lon": 117.5,
-   "title": "Fatigue monitoring and BIM-based safety diagnosis",
-   "note": "Two provincial programmes, including an international-cooperation programme"
-  },
-  {
-   "type": "rd",
-   "country": "China",
-   "lat": 31.0,
-   "lon": 119.1,
-   "title": "A 1:10 building-machine testbed",
-   "note": "Gantry with rail-mounted robot arms, PLC control and a digital twin"
+   "country": "Norway",
+   "lat": 59.95,
+   "lon": 10.8,
+   "title": "Joint centre with a Norwegian university",
+   "note": "BIM and digital construction, centre-level agreement",
+   "source": "Research academy"
   },
   {
    "type": "rd",
@@ -416,7 +394,179 @@
    "lat": 29.6,
    "lon": 106.6,
    "title": "Building an applied research academy",
-   "note": "Twelve joint research centres and laboratories, with European partners"
+   "note": "Twelve joint research centres and laboratories, five of them with European partners",
+   "source": "Research academy"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 30.1,
+   "lon": 107.4,
+   "title": "Sensing devices for structural monitoring",
+   "note": "Strain, temperature and vibration sensing, developed with industry partners",
+   "source": "Research academy"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 32.2,
+   "lon": 119.8,
+   "title": "Ageing steel lattice structures under extreme wind",
+   "note": "Wind-field reconstruction, finite elements and repair ranking; three successive commissioned contracts",
+   "source": "University"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 31.6,
+   "lon": 119.2,
+   "title": "Fire, wind and load coupling on transmission towers",
+   "note": "Sub-task in a national key R&D programme",
+   "source": "University"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 32.5,
+   "lon": 118.5,
+   "title": "A digital twin corrected by measurement",
+   "note": "Long-span river bridge, model updated from measurement in service",
+   "source": "University"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 31.1,
+   "lon": 118.4,
+   "title": "Fatigue monitoring and BIM-based safety diagnosis",
+   "note": "Two provincial programmes, including an international-cooperation programme",
+   "source": "University"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 31.9,
+   "lon": 118.8,
+   "title": "A 1:10 building-machine testbed",
+   "note": "Gantry with rail-mounted robot arms, PLC control and a digital twin",
+   "source": "University"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 30.4,
+   "lon": 100.2,
+   "title": "Bridges at high altitude and in cold regions",
+   "note": "National Natural Science Foundation key project",
+   "source": "University"
+  },
+  {
+   "type": "rd",
+   "country": "China",
+   "lat": 32.9,
+   "lon": 120.3,
+   "title": "Code clauses turned into machine-checkable rules",
+   "note": "Rule base for automated compliance checking of design models",
+   "source": "University"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 32.6,
+   "lon": 120.4,
+   "title": "Public-tender commission from a grid research institute",
+   "note": "Structural assessment method for transmission structures",
+   "source": "University"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 31.3,
+   "lon": 120.5,
+   "title": "Data architecture for a steel bridge programme",
+   "note": "Linking design, fabrication and inspection records in a knowledge graph",
+   "source": "University"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 23.6,
+   "lon": 113.2,
+   "title": "A BIM implementation guideline for a commercial developer",
+   "note": "Information standards, quality checklists and data-sharing rules",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 23.1,
+   "lon": 113.8,
+   "title": "Facade installation quality by laser scanning and vibrometry",
+   "note": "High-rise office building in the same development",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 30.0,
+   "lon": 106.0,
+   "title": "One expressway operator, three contracts in succession",
+   "note": "BIM and GIS for operation and maintenance, services, then construction-waste recycling",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 29.1,
+   "lon": 107.0,
+   "title": "A technical lecture, then a sensing contract",
+   "note": "Cable-structure sensing for a listed construction group",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 28.3,
+   "lon": 108.0,
+   "title": "Three-dimensional monitoring of a long-span mountain arch bridge",
+   "note": "Laser scanning and BIM through construction",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 28.7,
+   "lon": 105.5,
+   "title": "Recycled aggregate concrete on a high-speed railway project",
+   "note": "With European specialists on site",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 30.6,
+   "lon": 107.8,
+   "title": "Digital transformation advice to an airport operator",
+   "note": "Six-month advisory on BIM-based digital delivery",
+   "source": "Research academy"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 31.2,
+   "lon": 121.4,
+   "title": "Reality capture of automotive production lines",
+   "note": "Laser scanning compared with design models, as a subcontractor",
+   "source": "Practice"
+  },
+  {
+   "type": "consulting",
+   "country": "China",
+   "lat": 43.2,
+   "lon": 124.4,
+   "title": "BIM platform for a hospital",
+   "note": "Information model for construction and operation",
+   "source": "Practice"
   }
  ]
 }

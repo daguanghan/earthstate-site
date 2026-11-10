@@ -37,7 +37,7 @@
     var mark = [0.31, 0.19, 0.93];                       // the amber point, a fixed place on the sphere
     var dots = [], g = document.createElementNS(NS, 'g');
     for (var k = 0; k < N; k++) { var c = document.createElementNS(NS, 'circle'); c.setAttribute('fill', 'currentColor'); g.appendChild(c); dots.push(c); }
-    var am = document.createElementNS(NS, 'circle'); am.setAttribute('fill', '#c2711c'); g.appendChild(am);
+    var am = document.createElementNS(NS, 'circle'); am.setAttribute('fill', '#f0a44f'); g.appendChild(am);
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     svg.appendChild(g);
     function place(p, a) {

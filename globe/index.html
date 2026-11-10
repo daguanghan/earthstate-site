@@ -3,274 +3,59 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Live Globe · EarthState</title>
-<meta name="description" content="The Earth, Sun and Moon as they are at this moment, with the EarthState expert network and project experience drawn on the globe.">
-<meta name="theme-color" content="#0f1317">
+<title>Network Globe · EarthState</title>
+<meta name="description" content="EarthState's resource network and project experience on an interactive globe.">
+<meta name="theme-color" content="#000">
 <link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/"
-  }
-}
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/" } }
 </script>
 <style>
-  :root {
-    --bg: #0f1317;
-    --bg-2: #171d23;
-    --panel: rgba(15, 19, 23, 0.74);
-    --line: #2a333c;
-    --line-2: #3a454f;
-    --ink: #e9e7e1;
-    --muted: #9aa4ad;
-    --accent: #c2711c;
-    --accent-hi: #e09a52;
-    --rd: #5fb8aa;
-    --expert: #dcd8cf;
-    --f-display: "Newsreader", Georgia, "Times New Roman", serif;
-    --f-body: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-    --gap: 14px;
-  }
+  :root { --ink: #e9e7e1; --muted: #9aa4ad; --line: rgba(255, 255, 255, 0.12); --accent: #e9b872; }
   * { box-sizing: border-box; }
   html, body { height: 100%; margin: 0; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font: 13.5px/1.45 var(--f-body);
-    overflow: hidden;
-    -webkit-font-smoothing: antialiased;
-    font-feature-settings: "tnum" 1;
-  }
-  button { font: inherit; color: inherit; }
-  .stage { position: fixed; inset: 0; background: radial-gradient(ellipse at 50% 45%, #141a20 0%, var(--bg) 70%); }
-  #globe { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; outline: none; }
-  #globe.dragging { cursor: grabbing; }
-  #globe.pointing { cursor: pointer; }
-
-  /* overlay grid */
-  .ui {
-    position: absolute; inset: 0; pointer-events: none;
-    display: grid; gap: 10px var(--gap);
-    padding: max(var(--gap), env(safe-area-inset-top)) max(var(--gap), env(safe-area-inset-right)) 0 max(var(--gap), env(safe-area-inset-left));
-    grid-template-columns: minmax(0, 340px) 1fr minmax(0, 290px);
-    grid-template-rows: auto auto 1fr auto auto;
-    grid-template-areas:
-      "title . info"
-      "controls . info"
-      ". . ."
-      "legend . hint"
-      "credit credit credit";
-  }
-  .ui > * { pointer-events: auto; min-width: 0; }
-  .panel {
-    background: var(--panel);
-    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-  }
-
-  .titlebox { grid-area: title; padding: 2px 2px 0; }
-  .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .brand:hover { color: var(--ink); }
-  .brand svg { width: 18px; height: 18px; border-radius: 4px; }
-  h1 { font: 500 26px/1.15 var(--f-display); margin: 6px 0 2px; letter-spacing: 0.005em; }
-  .sub { margin: 0; color: var(--muted); font-size: 13px; }
-
-  .controls { grid-area: controls; align-self: start; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
-  .seg { display: inline-flex; padding: 3px; gap: 2px; }
-  .seg button {
-    border: 0; background: transparent; color: var(--muted);
-    padding: 6px 12px; border-radius: 5px; cursor: pointer; font-weight: 500; white-space: nowrap;
-  }
-  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-  .seg button:not([aria-pressed="true"]):hover { color: var(--ink); }
-  .filters { display: flex; gap: 6px; flex-wrap: wrap; }
-  .filters[hidden] { display: none; }
-  .chip {
-    display: inline-flex; align-items: center; gap: 7px;
-    border: 1px solid var(--line-2); background: var(--panel); border-radius: 999px;
-    padding: 4px 11px 4px 8px; cursor: pointer; font-size: 12.5px;
-    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  }
-  .chip .dot { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(0,0,0,0.35); }
-  .chip .n { color: var(--muted); }
-  .chip[aria-pressed="false"] { opacity: 0.5; }
-  .chip[aria-pressed="false"] .dot { background: transparent !important; box-shadow: inset 0 0 0 1.5px var(--muted); }
-  .seg button:focus-visible, .chip:focus-visible, .btns button:focus-visible, .brand:focus-visible { outline: 2px solid var(--accent-hi); outline-offset: 2px; }
-
-  .info { grid-area: info; align-self: start; padding: 12px 14px 12px; }
-  .info dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; }
-  .info dt { color: var(--muted); font-size: 12px; white-space: nowrap; }
-  .info dd { margin: 0; font-size: 12.5px; text-align: right; }
-  .info .moonline { display: inline-flex; align-items: center; gap: 6px; justify-content: flex-end; }
-  .info .moonline canvas { width: 14px; height: 14px; }
-  .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 11px; }
-  .btns button {
-    border: 1px solid var(--line-2); background: rgba(233, 231, 225, 0.04); border-radius: 5px;
-    padding: 6px 8px; cursor: pointer; font-size: 12.5px; white-space: nowrap;
-  }
-  .btns button:hover { border-color: var(--accent); color: #fff; }
-
-  .legendbox { grid-area: legend; align-self: end; padding: 10px 13px 10px; }
-  .legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-  .legend li { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
-  .legend .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; box-shadow: 0 0 0 2px rgba(0,0,0,0.35); }
-  .legend .n { margin-left: auto; padding-left: 12px; color: var(--muted); }
-  .legend .dot.hub { box-shadow: 0 0 0 2px var(--accent), 0 0 0 4px rgba(194, 113, 28, 0.25); width: 8px; height: 8px; margin: 0 1px; }
-  .caption { margin: 8px 0 0; color: var(--muted); font-size: 11.5px; line-height: 1.4; }
-
-  .hint { grid-area: hint; align-self: end; justify-self: end; color: var(--muted); font-size: 12px; text-align: right; padding-bottom: 4px; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.6); }
-
-  .credit {
-    grid-area: credit; color: var(--muted); font-size: 11px; line-height: 1.4;
-    margin: 0 calc(-1 * var(--gap));
-    padding: 6px var(--gap) max(9px, env(safe-area-inset-bottom));
-    background: rgba(15, 19, 23, 0.8);
-    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-    border-top: 1px solid rgba(42, 51, 60, 0.7);
-  }
-
-  .tip {
-    position: absolute; z-index: 5; pointer-events: none; max-width: 280px;
-    background: rgba(12, 15, 18, 0.94); border: 1px solid var(--line-2); border-radius: 7px;
-    padding: 8px 11px; font-size: 12.5px; line-height: 1.4; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  }
-  .tip[hidden] { display: none; }
-  .tip .t { font-weight: 600; }
-  .tip .n { color: #c7cbd0; margin-top: 2px; }
-  .tip .k { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 11.5px; margin-top: 4px; }
-  .tip .k .dot { width: 8px; height: 8px; border-radius: 50%; }
-  .tip .x { color: var(--accent-hi); font-weight: 600; margin-left: 4px; }
-
-  .status { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: var(--muted); font-size: 13px; text-align: center; max-width: 320px; pointer-events: none; }
-  .status[hidden] { display: none; }
-
-  .checklabel { position: absolute; z-index: 4; pointer-events: none; font-size: 11px; padding: 1px 5px; border-radius: 3px; background: rgba(0,0,0,0.65); color: #fff; transform: translate(8px, -50%); white-space: nowrap; }
-
-  /* short frames (small iframes, landscape phones): tighten everything, keep every element visible */
-  @media (max-height: 560px) {
-    .ui { gap: 6px 10px; --gap: 10px; }
-    .sub, .hint { display: none; }
-    h1 { font-size: 19px; margin: 2px 0 0; }
-    .brand { font-size: 11px; }
-    .seg button { padding: 4px 9px; font-size: 12px; }
-    .chip { padding: 3px 9px 3px 7px; font-size: 12px; }
-    .info { padding: 8px 10px; }
-    .info dt, .info dd { font-size: 11.5px; }
-    .btns { gap: 4px; margin-top: 7px; }
-    .btns button { padding: 4px 4px; font-size: 11.5px; }
-    .legendbox { padding: 7px 10px; }
-    .legend li { font-size: 12px; }
-    .caption { margin-top: 4px; font-size: 11px; }
-    .credit { font-size: 10px; padding-top: 4px; }
-  }
-  /* narrow frames (phones, narrow iframes): one column, globe in the free band */
-  @media (max-width: 680px) {
-    body { font-size: 12.5px; }
-    .ui {
-      --gap: 10px; gap: 7px var(--gap);
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto auto 1fr auto auto auto;
-      grid-template-areas: "title" "controls" "." "legend" "info" "credit";
-    }
-    .titlebox { display: flex; align-items: center; gap: 4px 12px; flex-wrap: wrap; }
-    h1 { font-size: 19px; margin: 0; }
-    .sub, .hint { display: none; }
-    .controls { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px; }
-    .seg button { padding: 5px 10px; }
-    .legendbox { padding: 7px 10px; }
-    .legend { display: flex; flex-wrap: wrap; gap: 2px 16px; }
-    .legend li { white-space: nowrap; font-size: 12px; }
-    .legend .n { margin-left: 0; padding-left: 2px; }
-    .caption { margin-top: 4px; font-size: 11px; }
-    .info { padding: 7px 10px; }
-    .info dl { gap: 1px 10px; }
-    .info dt, .info dd { font-size: 11.5px; }
-    .btns { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; margin-top: 7px; }
-    .btns button { padding: 5px 2px; font-size: 11.5px; }
-    .credit { font-size: 10px; padding-top: 4px; }
-  }
-  /* small landscape frames: overlays in a right-hand column, globe on the left */
-  @media (max-width: 680px) and (max-height: 500px) and (min-aspect-ratio: 6/5) {
-    .ui {
-      grid-template-columns: 1fr minmax(0, 284px);
-      grid-template-rows: auto auto auto auto 1fr auto;
-      grid-template-areas: ". title" ". controls" ". legend" ". info" ". ." "credit credit";
-      gap: 5px 10px;
-    }
-    .titlebox { gap: 2px 10px; }
-    .info { padding: 6px 9px; }
-    .info dl { gap: 0 8px; }
-    .info dt, .info dd { font-size: 11px; }
-    .btns { grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 6px; }
-    .btns button { padding: 3px 4px; font-size: 11px; }
-    .legendbox { padding: 6px 9px; }
-    .legend { gap: 1px 12px; }
-    .legend li { font-size: 11.5px; }
-    .caption { font-size: 10.5px; margin-top: 3px; }
-    .credit { font-size: 9.5px; padding-top: 3px; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    * { transition: none !important; animation: none !important; }
-  }
+  body { background: #000; color: var(--ink); font: 14px/1.45 Geist, Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; overflow: hidden; }
+  .gx { position: fixed; inset: 0; }
+  .gx-stage { position: absolute; inset: 0; }
+  .top { position: absolute; top: 14px; left: 16px; right: 16px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; pointer-events: none; }
+  .top > * { pointer-events: auto; }
+  .brand { color: var(--ink); text-decoration: none; font: 600 18px/1 Geist, Inter, sans-serif; letter-spacing: -0.02em; display: inline-flex; gap: 8px; align-items: center; }
+  .brand img { width: 22px; height: 22px; border-radius: 5px; }
+  .group { display: flex; flex-wrap: wrap; gap: 6px; }
+  .group button { font: 500 12.5px/1 Geist, Inter, sans-serif; color: var(--ink); background: rgba(11, 14, 18, 0.72); border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .group button b { color: var(--muted); font-weight: 500; }
+  .group button[aria-pressed="false"] { opacity: 0.55; }
+  .views button[aria-pressed="true"] { background: var(--ink); color: #000; }
+  .views button[aria-pressed="false"] { opacity: 1; color: #c7cbd0; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.35); }
+  .dot.res { background: #cfe6ff; } .dot.rd { background: #5fd0bd; } .dot.con { background: #f0a44f; }
+  .note { position: absolute; left: 16px; right: 16px; bottom: max(12px, env(safe-area-inset-bottom)); margin: 0; color: var(--muted); font-size: 12px; pointer-events: none; text-shadow: 0 1px 3px #000; }
+  button:focus-visible, a:focus-visible { outline: 2px solid #e9b872; outline-offset: 2px; }
 </style>
 </head>
 <body>
-<main class="stage" id="stage">
-  <canvas id="globe" role="img" tabindex="-1" aria-label="A live globe showing the Earth with day and night as they are now, the Sun and the Moon in their true directions, and the EarthState network drawn as points and arcs from the United Kingdom."></canvas>
-  <div class="status" id="status" aria-live="polite">Loading the globe…</div>
-  <div class="tip" id="tip" role="tooltip" hidden></div>
-
-  <div class="ui" id="ui">
-    <div class="titlebox">
-      <a class="brand" href="../" target="_top" aria-label="EarthState home">
-        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#15191e"/><g fill="#f5f4ef"><circle cx="18.54" cy="4.27" r="0.75"/><circle cx="12.79" cy="4.82" r="0.92"/><circle cx="19.95" cy="5.91" r="1.04"/><circle cx="13.79" cy="7.55" r="1.21"/><circle cx="24.90" cy="8.64" r="0.93"/><circle cx="6.87" cy="9.18" r="0.96"/><circle cx="19.16" cy="10.27" r="1.32"/><circle cx="9.51" cy="11.91" r="1.27"/><circle cx="24.88" cy="13.00" r="1.17"/><circle cx="4.26" cy="13.55" r="0.78"/><circle cx="15.45" cy="14.64" r="1.42"/><circle cx="27.89" cy="15.73" r="0.84"/><circle cx="6.15" cy="16.27" r="1.14"/><circle cx="21.93" cy="17.36" r="1.33"/><circle cx="11.51" cy="19.00" r="1.35"/><circle cx="25.99" cy="20.09" r="1.05"/><circle cx="5.30" cy="20.64" r="0.91"/><circle cx="17.79" cy="21.73" r="1.33"/><circle cx="9.57" cy="23.36" r="1.14"/><circle cx="21.72" cy="24.45" r="1.10"/><circle cx="14.84" cy="26.09" r="1.11"/><circle cx="20.20" cy="27.18" r="0.81"/><circle cx="13.74" cy="27.73" r="0.82"/></g><circle cx="20" cy="13.5" r="2.3" fill="#c2711c"/></svg>
-        EarthState
-      </a>
-      <h1>Live globe</h1>
-      <p class="sub">The Earth, Sun and Moon as they are at this moment.</p>
+<main class="gx" data-globe-explorer data-link-base="../" aria-label="Interactive globe">
+  <div class="gx-stage"></div>
+  <div class="top">
+    <a class="brand" href="../index.html"><img src="../assets/img/mark.svg" alt="">EarthState</a>
+    <div class="group" role="group" aria-label="Layers">
+      <button type="button" data-layer="resources" aria-pressed="true"><span class="dot res"></span>Resources <b data-count="resources">44</b></button>
+      <button type="button" data-layer="rd" aria-pressed="true"><span class="dot rd"></span>R&amp;D <b data-count="rd">17</b></button>
+      <button type="button" data-layer="consulting" aria-pressed="true"><span class="dot con"></span>Consulting <b data-count="consulting">11</b></button>
     </div>
-
-    <div class="controls">
-      <div class="seg panel" role="group" aria-label="Overlay">
-        <button type="button" data-mode="experts" aria-pressed="true">Expert network</button>
-        <button type="button" data-mode="projects" aria-pressed="false">Project experience</button>
-      </div>
-      <div class="filters" id="filters" role="group" aria-label="Project types" hidden>
-        <button type="button" class="chip" data-type="rd" aria-pressed="true"><span class="dot" style="background:var(--rd)"></span>R&amp;D <span class="n" id="n-rd"></span></button>
-        <button type="button" class="chip" data-type="consulting" aria-pressed="true"><span class="dot" style="background:var(--accent)"></span>Consulting <span class="n" id="n-consulting"></span></button>
-      </div>
+    <div class="group views" role="group" aria-label="View">
+      <button type="button" data-view="world" aria-pressed="true">World</button>
+      <button type="button" data-view="uk" aria-pressed="false">UK</button>
+      <button type="button" data-view="europe" aria-pressed="false">Europe</button>
+      <button type="button" data-view="namerica" aria-pressed="false">North America</button>
+      <button type="button" data-view="eastasia" aria-pressed="false">East Asia</button>
     </div>
-
-    <section class="info panel" aria-label="Sky now">
-      <dl>
-        <dt>UTC</dt><dd id="utc">–</dd>
-        <dt>Subsolar point</dt><dd id="subsolar">–</dd>
-        <dt>Moon</dt><dd><span class="moonline"><canvas id="moonicon" width="28" height="28" aria-hidden="true"></canvas><span id="moon">–</span></span></dd>
-      </dl>
-      <div class="btns">
-        <button type="button" data-focus="uk">Focus UK</button>
-        <button type="button" data-focus="europe">Focus Europe</button>
-        <button type="button" data-focus="sun">Show Sun</button>
-        <button type="button" data-focus="moon">Show Moon</button>
-      </div>
-    </section>
-
-    <div class="legendbox panel">
-      <ul class="legend" id="legend" aria-live="polite"></ul>
-      <p class="caption">Positions in China are indicative by region. Expert names are not shown.</p>
-    </div>
-
-    <div class="hint" id="hint">Drag to turn · scroll to zoom · point at a marker for details</div>
-
-    <footer class="credit">Earth imagery: NASA Blue Marble Next Generation (public domain). Sun and Moon positions computed in your browser from low-precision astronomical formulas. Built with three.js (MIT).</footer>
   </div>
+  <p class="note">Names are not shown. Positions in China are indicative by region. Projects were completed in previous academic and institute posts.</p>
 </main>
-<noscript><p style="position:fixed;top:45%;width:100%;text-align:center;color:#9aa4ad">This globe needs JavaScript and WebGL.</p></noscript>
-<script type="module" src="globe.js"></script>
+<script type="module" src="explorer.js"></script>
 </body>
 </html>

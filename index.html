@@ -10,11 +10,12 @@
 <meta property="og:description" content="EarthState builds digital twins of real infrastructure, with three twin platforms for ageing steel towers, overhead lines and facilities, and advises infrastructure owners, engineering consultancies and research partners. Every result goes to an engineer for sign-off.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://earthstate.co.uk/assets/img/hero-tower-line.jpg">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=dc6147db11">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -29,6 +30,8 @@
  ],
  "knowsAbout": [
   "World models for infrastructure",
+  "Automated structural modelling from drawings and point clouds",
+  "Sensor integration for structural monitoring",
   "Structural digital twins",
   "Facility operations digital twins",
   "Capacity assessment of lattice steel towers",
@@ -50,177 +53,208 @@
 }
 </script>
 </head>
-<body>
+<body class="home-globe">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-head">
   <div class="wrap">
     <a class="brand" href="index.html" aria-label="EarthState home">
-      <svg viewBox="0 0 64 64" aria-hidden="true" data-spin><circle cx="35.35" cy="6.22" r="0.90" fill="currentColor"/><circle cx="27.74" cy="6.65" r="1.02" fill="currentColor"/><circle cx="37.32" cy="7.52" r="1.12" fill="currentColor"/><circle cx="28.94" cy="8.82" r="1.25" fill="currentColor"/><circle cx="44.53" cy="9.68" r="1.04" fill="currentColor"/><circle cx="19.02" cy="10.12" r="1.07" fill="currentColor"/><circle cx="36.58" cy="10.98" r="1.36" fill="currentColor"/><circle cx="22.25" cy="12.28" r="1.33" fill="currentColor"/><circle cx="45.69" cy="13.15" r="1.26" fill="currentColor"/><circle cx="13.66" cy="13.58" r="0.92" fill="currentColor"/><circle cx="31.11" cy="14.45" r="1.50" fill="currentColor"/><circle cx="51.76" cy="15.32" r="0.98" fill="currentColor"/><circle cx="15.34" cy="15.75" r="1.26" fill="currentColor"/><circle cx="42.42" cy="16.62" r="1.47" fill="currentColor"/><circle cx="23.56" cy="17.92" r="1.53" fill="currentColor"/><circle cx="51.82" cy="18.78" r="1.22" fill="currentColor"/><circle cx="10.11" cy="19.22" r="1.08" fill="currentColor"/><circle cx="35.91" cy="20.08" r="1.61" fill="currentColor"/><circle cx="15.88" cy="21.38" r="1.44" fill="currentColor"/><circle cx="48.19" cy="22.25" r="1.46" fill="currentColor"/><circle cx="27.60" cy="23.55" r="1.65" fill="currentColor"/><circle cx="55.99" cy="24.42" r="1.10" fill="currentColor"/><circle cx="9.76" cy="24.85" r="1.26" fill="currentColor"/><circle cx="41.51" cy="25.72" r="1.63" fill="currentColor"/><circle cx="19.10" cy="27.02" r="1.59" fill="currentColor"/><circle cx="52.93" cy="27.88" r="1.36" fill="currentColor"/><circle cx="6.46" cy="28.32" r="1.00" fill="currentColor"/><circle cx="32.94" cy="29.18" r="1.70" fill="currentColor"/><circle cx="57.89" cy="30.05" r="0.94" fill="currentColor"/><circle cx="11.99" cy="30.48" r="1.42" fill="currentColor"/><circle cx="46.74" cy="31.35" r="1.57" fill="currentColor"/><circle cx="23.98" cy="32.65" r="1.67" fill="currentColor"/><circle cx="55.89" cy="33.52" r="1.22" fill="currentColor"/><circle cx="7.56" cy="33.95" r="1.17" fill="currentColor"/><circle cx="38.47" cy="34.82" r="1.68" fill="currentColor"/><circle cx="16.18" cy="36.12" r="1.53" fill="currentColor"/><circle cx="50.65" cy="36.98" r="1.44" fill="currentColor"/><circle cx="6.57" cy="37.42" r="0.89" fill="currentColor"/><circle cx="29.55" cy="38.28" r="1.68" fill="currentColor"/><circle cx="56.57" cy="39.15" r="1.04" fill="currentColor"/><circle cx="10.89" cy="39.58" r="1.31" fill="currentColor"/><circle cx="43.12" cy="40.45" r="1.58" fill="currentColor"/><circle cx="21.57" cy="41.75" r="1.58" fill="currentColor"/><circle cx="52.42" cy="42.62" r="1.28" fill="currentColor"/><circle cx="8.97" cy="43.05" r="1.05" fill="currentColor"/><circle cx="34.75" cy="43.92" r="1.61" fill="currentColor"/><circle cx="54.63" cy="44.78" r="0.88" fill="currentColor"/><circle cx="15.98" cy="45.22" r="1.39" fill="currentColor"/><circle cx="45.84" cy="46.08" r="1.43" fill="currentColor"/><circle cx="27.20" cy="47.38" r="1.54" fill="currentColor"/><circle cx="51.27" cy="48.25" r="1.10" fill="currentColor"/><circle cx="13.82" cy="48.68" r="1.16" fill="currentColor"/><circle cx="38.32" cy="49.55" r="1.46" fill="currentColor"/><circle cx="22.17" cy="50.85" r="1.37" fill="currentColor"/><circle cx="45.30" cy="51.72" r="1.23" fill="currentColor"/><circle cx="15.61" cy="52.15" r="0.94" fill="currentColor"/><circle cx="31.78" cy="53.02" r="1.38" fill="currentColor"/><circle cx="45.97" cy="53.88" r="0.94" fill="currentColor"/><circle cx="21.30" cy="54.32" r="1.15" fill="currentColor"/><circle cx="38.17" cy="55.18" r="1.21" fill="currentColor"/><circle cx="28.88" cy="56.48" r="1.15" fill="currentColor"/><circle cx="37.20" cy="57.35" r="0.98" fill="currentColor"/><circle cx="28.79" cy="57.78" r="0.93" fill="currentColor"/><circle cx="40" cy="27" r="3.6" fill="#c2711c"/></svg>
+      <svg viewBox="0 0 64 64" aria-hidden="true" data-spin><circle cx="35.35" cy="6.22" r="0.90" fill="currentColor"/><circle cx="27.74" cy="6.65" r="1.02" fill="currentColor"/><circle cx="37.32" cy="7.52" r="1.12" fill="currentColor"/><circle cx="28.94" cy="8.82" r="1.25" fill="currentColor"/><circle cx="44.53" cy="9.68" r="1.04" fill="currentColor"/><circle cx="19.02" cy="10.12" r="1.07" fill="currentColor"/><circle cx="36.58" cy="10.98" r="1.36" fill="currentColor"/><circle cx="22.25" cy="12.28" r="1.33" fill="currentColor"/><circle cx="45.69" cy="13.15" r="1.26" fill="currentColor"/><circle cx="13.66" cy="13.58" r="0.92" fill="currentColor"/><circle cx="31.11" cy="14.45" r="1.50" fill="currentColor"/><circle cx="51.76" cy="15.32" r="0.98" fill="currentColor"/><circle cx="15.34" cy="15.75" r="1.26" fill="currentColor"/><circle cx="42.42" cy="16.62" r="1.47" fill="currentColor"/><circle cx="23.56" cy="17.92" r="1.53" fill="currentColor"/><circle cx="51.82" cy="18.78" r="1.22" fill="currentColor"/><circle cx="10.11" cy="19.22" r="1.08" fill="currentColor"/><circle cx="35.91" cy="20.08" r="1.61" fill="currentColor"/><circle cx="15.88" cy="21.38" r="1.44" fill="currentColor"/><circle cx="48.19" cy="22.25" r="1.46" fill="currentColor"/><circle cx="27.60" cy="23.55" r="1.65" fill="currentColor"/><circle cx="55.99" cy="24.42" r="1.10" fill="currentColor"/><circle cx="9.76" cy="24.85" r="1.26" fill="currentColor"/><circle cx="41.51" cy="25.72" r="1.63" fill="currentColor"/><circle cx="19.10" cy="27.02" r="1.59" fill="currentColor"/><circle cx="52.93" cy="27.88" r="1.36" fill="currentColor"/><circle cx="6.46" cy="28.32" r="1.00" fill="currentColor"/><circle cx="32.94" cy="29.18" r="1.70" fill="currentColor"/><circle cx="57.89" cy="30.05" r="0.94" fill="currentColor"/><circle cx="11.99" cy="30.48" r="1.42" fill="currentColor"/><circle cx="46.74" cy="31.35" r="1.57" fill="currentColor"/><circle cx="23.98" cy="32.65" r="1.67" fill="currentColor"/><circle cx="55.89" cy="33.52" r="1.22" fill="currentColor"/><circle cx="7.56" cy="33.95" r="1.17" fill="currentColor"/><circle cx="38.47" cy="34.82" r="1.68" fill="currentColor"/><circle cx="16.18" cy="36.12" r="1.53" fill="currentColor"/><circle cx="50.65" cy="36.98" r="1.44" fill="currentColor"/><circle cx="6.57" cy="37.42" r="0.89" fill="currentColor"/><circle cx="29.55" cy="38.28" r="1.68" fill="currentColor"/><circle cx="56.57" cy="39.15" r="1.04" fill="currentColor"/><circle cx="10.89" cy="39.58" r="1.31" fill="currentColor"/><circle cx="43.12" cy="40.45" r="1.58" fill="currentColor"/><circle cx="21.57" cy="41.75" r="1.58" fill="currentColor"/><circle cx="52.42" cy="42.62" r="1.28" fill="currentColor"/><circle cx="8.97" cy="43.05" r="1.05" fill="currentColor"/><circle cx="34.75" cy="43.92" r="1.61" fill="currentColor"/><circle cx="54.63" cy="44.78" r="0.88" fill="currentColor"/><circle cx="15.98" cy="45.22" r="1.39" fill="currentColor"/><circle cx="45.84" cy="46.08" r="1.43" fill="currentColor"/><circle cx="27.20" cy="47.38" r="1.54" fill="currentColor"/><circle cx="51.27" cy="48.25" r="1.10" fill="currentColor"/><circle cx="13.82" cy="48.68" r="1.16" fill="currentColor"/><circle cx="38.32" cy="49.55" r="1.46" fill="currentColor"/><circle cx="22.17" cy="50.85" r="1.37" fill="currentColor"/><circle cx="45.30" cy="51.72" r="1.23" fill="currentColor"/><circle cx="15.61" cy="52.15" r="0.94" fill="currentColor"/><circle cx="31.78" cy="53.02" r="1.38" fill="currentColor"/><circle cx="45.97" cy="53.88" r="0.94" fill="currentColor"/><circle cx="21.30" cy="54.32" r="1.15" fill="currentColor"/><circle cx="38.17" cy="55.18" r="1.21" fill="currentColor"/><circle cx="28.88" cy="56.48" r="1.15" fill="currentColor"/><circle cx="37.20" cy="57.35" r="0.98" fill="currentColor"/><circle cx="28.79" cy="57.78" r="0.93" fill="currentColor"/><circle cx="40" cy="27" r="3.6" fill="#f0a44f"/></svg>
       EarthState
     </a>
     <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="platforms/index.html">Platforms</a>
+      <a href="modelling.html">Modelling</a>
+      <a href="aiot.html">AIoT</a>
+      <a href="lab/index.html">3D Lab</a>
       <a href="demos/index.html">Demos</a>
       <a href="advisory.html">Advisory</a>
       <a href="network.html">Network</a>
-      <a href="research.html">Research</a>
-      <a href="work.html">Work</a>
       <a href="about.html">About</a>
       <a class="cta" href="contact.html">Request a walkthrough</a>
     </nav>
   </div>
 </header>
 <main id="main">
-<section class="hero">
-  <img class="bg" src="assets/img/hero-tower-line.jpg" alt="A lattice steel transmission tower and its conductors on open farmland, rendered from a structural model." fetchpriority="high">
-  <div class="wrap">
-    <p class="kicker">World models for infrastructure</p>
-    <h1>How much can this structure still carry, and what should be fixed first?</h1>
-    <p class="lede">EarthState builds digital twins of real infrastructure that an engineer can check, and uses them to answer owners' questions about towers, lines, bridges and buildings.</p>
-    <div class="actions">
-      <a class="btn primary" href="demos/index.html">See the demos</a>
-      <a class="btn ghost" href="contact.html">Request a walkthrough</a>
-    </div>
-  </div>
-  <span class="credit">Rendered from a procedurally generated model · illustrative</span>
-</section>
+<div class="globe-bg" id="globe-bg" aria-hidden="true"></div>
 
-<section class="section">
+<section class="gsec gsec-hero left" data-scene="hero" aria-labelledby="hero-title">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Platforms</p>
-      <h2>Three twin platforms, and the engineering judgement to use them</h2>
-      <p class="lede">Every number comes from a calculation, not from a language model. Every result is logged, traceable to its inputs, and goes to an engineer for sign-off.</p>
-    </div>
-    <div class="grid g3">
-      <article class="card">
-        <span class="num">PLATFORM 01</span>
-        <h3>EarthState Twin</h3>
-        <p>One ageing steel structure, in depth: from drawings and inspection data to an auditable digital twin, a capacity assessment and a ranked repair list for an engineer to sign off.</p>
-        <a class="more" href="platforms/structural-twin.html">How it works &rarr;</a>
-      </article>
-      <article class="card">
-        <span class="num">PLATFORM 02</span>
-        <h3>Standfast</h3>
-        <p>A whole overhead line on real terrain under storm loading, showing tower by tower how close each structure is to failure, and what strengthening would change.</p>
-        <a class="more" href="platforms/standfast.html">How it works &rarr;</a>
-      </article>
-      <article class="card">
-        <span class="num">PLATFORM 03</span>
-        <h3>FacilityNexus</h3>
-        <p>A building or campus as a live 3D twin for operations: events, equipment health, a searchable knowledge base and an AI assistant on every page.</p>
-        <a class="more" href="platforms/facility-twin.html">How it works &rarr;</a>
-      </article>
-    </div>
-    <p class="small muted" style="margin-top:20px">All three are research prototypes. The EarthState Twin method is the subject of UK patent application GB2626083.6 (filed 3 November 2026), patent pending.</p>
-  </div>
-</section>
-
-<section class="section night">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Three ways to use them</p>
-      <h2>Our tools, your team, or a joint project</h2>
-    </div>
-    <div class="grid g3">
-      <div class="card"><span class="num">01</span><h3>Inside our advisory work</h3><p>We run the platforms on your asset and hand over a report and evidence pack an engineer can sign.</p></div>
-      <div class="card"><span class="num">02</span><h3>Licensed to your team</h3><p>Your engineers use a platform on their own assets, with set-up, training and our support behind them.</p></div>
-      <div class="card"><span class="num">03</span><h3>In joint research and innovation</h3><p>Universities and companies use the platforms in joint projects, with papers and intellectual property agreed at the start.</p></div>
+    <div class="glass bare">
+      <p class="kicker">World models for infrastructure</p>
+      <h1 id="hero-title">How much can this structure still carry, and what should be fixed first?</h1>
+      <p class="lede">EarthState builds digital twins of real infrastructure that an engineer can check, and uses them to answer owners' questions about towers, lines, bridges and buildings.</p>
+      <div class="actions">
+        <a class="btn primary" href="demos/index.html">See the demos</a>
+        <a class="btn ghost" href="contact.html">Request a walkthrough</a>
+      </div>
+      <ul class="globe-key" aria-label="On the globe">
+        <li><span class="dot hub"></span>EarthState, United Kingdom</li>
+        <li><span class="dot res"></span>Resource network <b data-count="resources">44</b></li>
+        <li><span class="dot rd"></span>R&amp;D projects <b data-count="rd">17</b></li>
+        <li><span class="dot con"></span>Consulting projects <b data-count="consulting">11</b></li>
+      </ul>
+      <p class="key-note">Select a point on the globe for details.</p>
     </div>
   </div>
 </section>
 
-<section class="section night">
-  <div class="wrap feature flip">
-    <div class="media">
-      <div class="viewer-shell" data-viewer="globe/index.html" data-title="Live 3D Earth with the expert network and project experience">
-        <img src="assets/img/tower-high.jpg" alt="Preview image; opens a live 3D Earth." loading="lazy">
-        <button class="play" type="button"><span class="btn primary">Open the live Earth</span><small>Real-time day and night, Sun and Moon</small></button>
+<section class="gsec left" id="platforms" data-scene="platforms" aria-labelledby="platforms-title">
+  <div class="wrap">
+    <div class="glass">
+      <p class="kicker"><span class="dot rd"></span>Platforms</p>
+      <h2 id="platforms-title">Three twin platforms, and the engineering judgement to use them</h2>
+      <p>Every number comes from a calculation, not from a language model. Every result is logged, traceable to its inputs, and goes to an engineer for sign-off.</p>
+      <div class="plist">
+        <article class="pcard">
+          <span class="num">PLATFORM 01</span>
+          <h3>EarthState Twin</h3>
+          <p>One ageing steel structure, in depth: from drawings and inspection data to an auditable digital twin, a capacity assessment and a ranked repair list for an engineer to sign off.</p>
+          <p class="links"><a href="platforms/structural-twin.html">How it works &rarr;</a><a href="demos/twin/function-tour.html">Function tour &rarr;</a></p>
+        </article>
+        <article class="pcard">
+          <span class="num">PLATFORM 02</span>
+          <h3>Standfast</h3>
+          <p>A whole overhead line on real terrain under storm loading, showing tower by tower how close each structure is to failure, and what strengthening would change.</p>
+          <p class="links"><a href="platforms/standfast.html">How it works &rarr;</a><a href="contact.html">Walkthrough on request &rarr;</a></p>
+        </article>
+        <article class="pcard">
+          <span class="num">PLATFORM 03</span>
+          <h3>FacilityNexus</h3>
+          <p>A building or campus as a live 3D twin for operations: events, equipment health, a searchable knowledge base and an AI assistant on every page.</p>
+          <p class="links"><a href="platforms/facility-twin.html">How it works &rarr;</a><a href="https://demo.daguanghan.com" rel="noopener">Sign in for testers &rarr;</a></p>
+        </article>
+      </div>
+      <p class="small muted">All three are research prototypes. Use them inside our advisory work, licensed to your own team, or in joint research and innovation projects.</p>
+      <p class="small muted">The EarthState Twin method is the subject of UK patent application GB2626083.6 (filed 3 November 2026), patent pending.</p>
+    </div>
+  </div>
+</section>
+
+<section class="gsec left" id="capabilities" data-scene="platforms" aria-labelledby="cap-title">
+  <div class="wrap">
+    <div class="glass wide">
+      <p class="kicker">Core capabilities</p>
+      <h2 id="cap-title">Models built automatically, sensors connected automatically</h2>
+      <p>Most ageing structures have drawings, and many have sensors. Very few have a model that ties the two together. That is the part we automate.</p>
+      <div class="cap2">
+        <a class="dcard" href="modelling.html"><img src="assets/img/ui-twin-model.jpg" alt="A lattice tower model built from drawing tables." loading="lazy"><span class="txt"><span class="num">Automated modelling</span><b>Drawings and point clouds to a model</b><span>Vector PDF drawings and laser scans become a member-level model with its own self-checks.</span></span></a>
+        <a class="dcard" href="aiot.html"><img src="assets/img/ui-twin-sensors.jpg" alt="Wind and strain records with quality checks." loading="lazy"><span class="txt"><span class="num">AIoT</span><b>Sensors onto the model</b><span>Each gauge is registered on its member, checked, corrected and used to calibrate the twin.</span></span></a>
       </div>
     </div>
-    <div>
-      <p class="kicker">Network</p>
-      <h2>Experts and experience, on a live Earth</h2>
-      <p>See the expert advisory network across the UK, Europe and North America, and the founder's project experience in research and development and in consulting, on an Earth shown as it is right now.</p>
-      <a class="btn ghost" href="network.html" style="margin-top:12px">See the network</a>
+  </div>
+</section>
+
+<section class="gsec right" id="advisory" data-scene="advisory" aria-labelledby="advisory-title">
+  <div class="wrap">
+    <div class="glass">
+      <p class="kicker"><span class="dot con"></span>Advisory</p>
+      <h2 id="advisory-title">Engineering advice, backed by our own tools</h2>
+      <p>We work with infrastructure owners, engineering consultancies and research partners. Because we build the platforms ourselves, we can show exactly how a result was reached, and change the method when your asset needs it.</p>
+      <div class="svc">
+        <div><span class="num">01</span><h3>Capacity and remaining life</h3><p>Lattice towers, steel structures and bridges, checked against the Eurocodes, with utilisation, remaining margin and a ranked repair list.</p></div>
+        <div><span class="num">02</span><h3>Storm and climate resilience</h3><p>Line-level wind studies: which towers come closest to failure in which storms, and which strengthening options buy the most margin.</p></div>
+        <div><span class="num">03</span><h3>Infrastructure AI assurance</h3><p>What AI should and should not decide on a live asset, how to verify it, and how to keep an audit trail an engineer and a regulator can follow.</p></div>
+        <div><span class="num">04</span><h3>Digital delivery</h3><p>ISO 19650 information requirements, IFC models, COBie handover and data architecture, so that asset data can feed analysis.</p></div>
+      </div>
+      <h3 class="subhead">Ways to work together</h3>
+      <ul class="formats">
+        <li><b>Expert day</b>A focused review of an asset, a method or a bid.</li>
+        <li><b>Fixed-scope study</b>An assessment or resilience study with an agreed deliverable and date.</li>
+        <li><b>Platform pilot</b>The platforms applied to a small set of your assets, alongside your engineers.</li>
+        <li><b>Retained advisory</b>Ongoing support on AI, data and assessment questions.</li>
+      </ul>
+      <p class="actions"><a class="btn ghost" href="advisory.html">Advisory in detail</a></p>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap feature">
-    <div class="media">
-      <div class="viewer-shell" data-viewer="lab/tower/index.html" data-title="Tower and line in 3D">
-        <img src="assets/img/tower-high.jpg" alt="Lattice tower and line seen from above, rendered from the 3D model." loading="lazy">
-        <button class="play" type="button"><span class="btn primary">Open the interactive 3D view</span><small>About 20 MB · best on a laptop or desktop</small></button>
-      </div>
+<section class="gsec left" id="network" data-scene="network" aria-labelledby="network-title">
+  <div class="wrap">
+    <div class="glass">
+      <p class="kicker"><span class="dot res"></span>Expert network</p>
+      <h2 id="network-title">The right specialist for each question</h2>
+      <p>Each engagement draws on a network of academics, research partners and senior engineers in the UK, Europe, North America and Asia, covering structural and wind engineering, power-system engineering, sensing and monitoring, BIM and information management, and software and AI development. Experts are brought in per project and named in the scope of the engagement; names are not shown here.</p>
+      <p class="stats"><span><b data-count="experts-people">43</b> academic experts in <b data-count="experts-places">38</b> places</span><span><b data-count="partners">6</b> research partners</span></p>
+      <p class="actions"><a class="btn ghost" href="network.html">Explore the network</a></p>
     </div>
-    <div>
+  </div>
+</section>
+
+<section class="gsec right" id="experience" data-scene="projects" aria-labelledby="experience-title">
+  <div class="wrap">
+    <div class="glass">
+      <p class="kicker"><span class="dot rd"></span><span class="dot con"></span>Project experience</p>
+      <h2 id="experience-title">Research and development, and consulting</h2>
+      <p class="stats"><span><b data-count="rd">17</b> R&amp;D projects</span><span><b data-count="consulting">11</b> consulting projects</span></p>
+      <ul class="titles">
+        <li><span class="dot rd"></span>Ageing steel lattice structures under extreme wind</li>
+        <li><span class="dot rd"></span>A digital twin corrected by measurement</li>
+        <li><span class="dot rd"></span>Bridges at high altitude and in cold regions</li>
+        <li><span class="dot con"></span>Data architecture for a steel bridge programme</li>
+        <li><span class="dot con"></span>Three-dimensional monitoring of a long-span mountain arch bridge</li>
+        <li><span class="dot con"></span>Digital transformation advice to an airport operator</li>
+      </ul>
+      <p class="small muted">Projects completed in previous academic and institute posts, shown to illustrate experience.</p>
+      <p class="actions"><a class="btn ghost" href="network.html">Every project on the globe</a><a class="btn ghost" href="work.html">Work</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="gsec center" id="demos" data-scene="demos" aria-labelledby="demos-title">
+  <div class="wrap">
+    <div class="glass wide">
       <p class="kicker">Demos</p>
-      <h2>Turn it, click it, fly along it</h2>
-      <p>Open the 3D Lab in your browser, take the EarthState Twin function tour, or follow an analysis from drawings to a signed result. No sign-in needed.</p>
-      <p class="data-note" style="color:var(--muted)">Demonstration models and data are synthetic or procedurally generated, and labelled as such.</p>
-      <a class="btn ghost" href="demos/index.html" style="margin-top:12px">All demos</a>
+      <h2 id="demos-title">Turn it, click it, fly along it</h2>
+      <p>The open demos need no sign-in. Demonstration models and data are synthetic, procedurally generated or from open datasets, and are labelled as such on every screen.</p>
+      <div class="dgrid">
+        <a class="dcard" href="demos/twin/function-tour.html"><img src="assets/img/ui-twin-tour.jpg" alt="EarthState Twin function tour." loading="lazy"><span class="txt"><span class="num">Open · EarthState Twin</span><b>Function tour</b><span>Every stage of a job, from drawings to the report, with the audit column.</span></span></a>
+        <a class="dcard" href="demos/twin/analysis-demo.html"><img src="assets/img/ui-twin-analysis.jpg" alt="EarthState Twin analysis demo." loading="lazy"><span class="txt"><span class="num">Open · EarthState Twin</span><b>Analysis demo</b><span>One synthetic 48 m tower, from drawing tables to member checks.</span></span></a>
+        <a class="dcard" href="lab/tower/index.html"><img src="assets/img/tower-high.jpg" alt="Tower and line rendered from the 3D model." loading="lazy" style="object-position:center"><span class="txt"><span class="num">Open · 3D Lab</span><b>Tower and line in 3D</b><span>A live twin you can fly through. Best on a laptop or desktop.</span></span></a>
+        <a class="dcard" href="https://demo.daguanghan.com" rel="noopener"><img src="assets/img/ui-facilitynexus.jpg" alt="FacilityNexus interface." loading="lazy"><span class="txt"><span class="num">By invitation · FacilityNexus</span><b>Facility operations twin</b><span>Sign in for authorised testers, or ask us for access.</span></span></a>
+        <a class="dcard" href="contact.html"><img src="assets/img/standfast-line-storm.jpg" alt="Standfast interface." loading="lazy"><span class="txt"><span class="num">On request · Standfast</span><b>Storm across a whole line</b><span>A demonstration line on real terrain, shown live in a walkthrough.</span></span></a>
+        <a class="dcard" href="network.html"><img src="assets/img/ui-globe.jpg" alt="The EarthState network globe." loading="lazy" style="object-position:center"><span class="txt"><span class="num">Open · Network</span><b>Network globe</b><span>The resource network and project experience, on an interactive Earth.</span></span></a>
+      </div>
+      <p class="callout">All demos are research prototypes. Verification cases for the EarthState Twin pass, and independent engineer review of those cases is in progress.</p>
+      <p class="actions"><a class="btn ghost" href="demos/index.html">All demos</a></p>
     </div>
   </div>
 </section>
 
-<section class="section">
+<section class="gsec center" id="research" data-scene="closing" aria-label="Research partnerships and founder">
   <div class="wrap">
-    <div class="section-head">
-      <p class="kicker">Advisory</p>
-      <h2>Where we help</h2>
+    <div class="glass wide two">
+      <div>
+        <p class="kicker">Research partnerships</p>
+        <h2>A practice that also does research</h2>
+        <p>EarthState builds its own tools, tests them against independent results and publishes. We join universities and companies on research and innovation proposals, co-author papers, and agree how any new patents are shared before the work starts.</p>
+        <p class="actions"><a class="btn ghost" href="research.html">Research and partnerships</a></p>
+      </div>
+      <div>
+        <p class="kicker">Founder</p>
+        <h2>Built and led by an engineer who checks the output</h2>
+        <p>Dr.-Ing. Daguang Han founded EarthState. He is Associate Director of the Transport AI Innovation Centre (TRAICE) at Loughborough University. He has assessed in-service transmission towers and bridges, founded a research institute, and in 2026 led and directed the development of the EarthState Twin and Standfast platforms.</p>
+        <p class="actions"><a class="btn ghost" href="about.html">About the founder</a></p>
+      </div>
     </div>
-    <div class="grid g4">
-      <div class="card"><span class="num">01</span><h3>Capacity and remaining life</h3><p>Lattice towers, steel structures and bridges, checked against the Eurocodes.</p></div>
-      <div class="card"><span class="num">02</span><h3>Storm and climate resilience</h3><p>Line-level wind studies and strengthening options for network owners.</p></div>
-      <div class="card"><span class="num">03</span><h3>Infrastructure AI assurance</h3><p>What AI should and should not decide on a live asset, and how to verify it.</p></div>
-      <div class="card"><span class="num">04</span><h3>Digital delivery</h3><p>ISO 19650 information requirements, IFC models and data architecture for asset owners.</p></div>
-    </div>
-    <p class="lede" style="margin-top:28px">Each engagement draws on an expert advisory network of academics and senior engineers in the UK and Europe, brought in per project.</p>
-    <p class="actions"><a class="btn ghost" href="advisory.html">Services, experience and the expert network</a></p>
-  </div>
-</section>
-
-<section class="section night">
-  <div class="wrap grid g2">
-    <div>
-      <p class="kicker">Research practice</p>
-      <h2>A practice that also does research</h2>
-    </div>
-    <div>
-      <p>EarthState builds its own tools, tests them against independent results and publishes. We join universities and companies on research and innovation proposals, co-author papers, and agree how any new patents are shared before the work starts.</p>
-      <p class="actions" style="margin-top:16px"><a class="btn ghost" href="research.html">Research and partnerships</a></p>
+    <div class="glass wide cta-band">
+      <h2>Have an ageing asset, a storm question or an AI decision to check?</h2>
+      <a class="btn primary" href="contact.html">Book a consultation</a>
     </div>
   </div>
 </section>
 
-<section class="section">
-  <div class="wrap feature flip">
-    <div class="media"><img src="assets/img/tower-low.jpg" alt="Lattice tower seen from close to the ground, rendered from the 3D model." loading="lazy"></div>
-    <div>
-      <p class="kicker">Founder</p>
-      <h2>Built and led by an engineer who checks the output</h2>
-      <p>Dr.-Ing. Daguang Han founded EarthState. He is Associate Director of the Transport AI Innovation Centre (TRAICE) at Loughborough University. He has assessed in-service transmission towers and bridges, founded a research institute, and in 2026 led and directed the development of the EarthState Twin and Standfast platforms.</p>
-      <a class="btn ghost" href="about.html">About the founder</a>
-    </div>
-  </div>
-</section>
-
-<section class="section tight band">
-  <div class="wrap">
-    <h2>Have an ageing asset, a storm question or an AI decision to check?</h2>
-    <div class="actions" style="margin:0"><a class="btn primary" href="contact.html">Book a consultation</a></div>
-  </div>
-</section>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/" } }
+</script>
+<script type="module" src="globe/home.js?v=5dc446fec2"></script>
 </main>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <p style="font-family:var(--f-display);font-size:22px;color:var(--night-ink);margin-bottom:8px">EarthState</p>
+        <p class="foot-brand">EarthState</p>
         <p>World models for infrastructure. An independent engineering and research practice based in the United Kingdom, working across the UK, Europe and North America.</p>
       </div>
       <div>
@@ -229,8 +263,10 @@
           <li><a href="platforms/structural-twin.html">EarthState Twin</a></li>
           <li><a href="platforms/standfast.html">Standfast</a></li>
           <li><a href="platforms/facility-twin.html">FacilityNexus</a></li>
-          <li><a href="demos/index.html">Demos</a></li>
+          <li><a href="modelling.html">Automated modelling</a></li>
+          <li><a href="aiot.html">AIoT and sensors</a></li>
           <li><a href="lab/index.html">3D Lab</a></li>
+          <li><a href="demos/index.html">Demos</a></li>
         </ul>
       </div>
       <div>
@@ -258,6 +294,6 @@
     </div>
   </div>
 </footer>
-<script src="assets/js/site.js" defer></script>
+<script src="assets/js/site.js?v=dc6147db11" defer></script>
 </body>
 </html>

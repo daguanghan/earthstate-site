@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automated modelling · EarthState</title>
+<meta name="description" content="EarthState builds structural models automatically from vector PDF drawings, drawing tables and laser-scan point clouds, with self-checks and an audit trail, and writes an IFC information model from the same source.">
+<link rel="canonical" href="https://earthstate.co.uk/modelling.html">
+<meta property="og:title" content="Automated modelling · EarthState">
+<meta property="og:description" content="EarthState builds structural models automatically from vector PDF drawings, drawing tables and laser-scan point clouds, with self-checks and an audit trail, and writes an IFC information model from the same source.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://earthstate.co.uk/assets/img/hero-tower-line.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/site.css?v=dc6147db11">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="EarthState home">
+      <svg viewBox="0 0 64 64" aria-hidden="true" data-spin><circle cx="35.35" cy="6.22" r="0.90" fill="currentColor"/><circle cx="27.74" cy="6.65" r="1.02" fill="currentColor"/><circle cx="37.32" cy="7.52" r="1.12" fill="currentColor"/><circle cx="28.94" cy="8.82" r="1.25" fill="currentColor"/><circle cx="44.53" cy="9.68" r="1.04" fill="currentColor"/><circle cx="19.02" cy="10.12" r="1.07" fill="currentColor"/><circle cx="36.58" cy="10.98" r="1.36" fill="currentColor"/><circle cx="22.25" cy="12.28" r="1.33" fill="currentColor"/><circle cx="45.69" cy="13.15" r="1.26" fill="currentColor"/><circle cx="13.66" cy="13.58" r="0.92" fill="currentColor"/><circle cx="31.11" cy="14.45" r="1.50" fill="currentColor"/><circle cx="51.76" cy="15.32" r="0.98" fill="currentColor"/><circle cx="15.34" cy="15.75" r="1.26" fill="currentColor"/><circle cx="42.42" cy="16.62" r="1.47" fill="currentColor"/><circle cx="23.56" cy="17.92" r="1.53" fill="currentColor"/><circle cx="51.82" cy="18.78" r="1.22" fill="currentColor"/><circle cx="10.11" cy="19.22" r="1.08" fill="currentColor"/><circle cx="35.91" cy="20.08" r="1.61" fill="currentColor"/><circle cx="15.88" cy="21.38" r="1.44" fill="currentColor"/><circle cx="48.19" cy="22.25" r="1.46" fill="currentColor"/><circle cx="27.60" cy="23.55" r="1.65" fill="currentColor"/><circle cx="55.99" cy="24.42" r="1.10" fill="currentColor"/><circle cx="9.76" cy="24.85" r="1.26" fill="currentColor"/><circle cx="41.51" cy="25.72" r="1.63" fill="currentColor"/><circle cx="19.10" cy="27.02" r="1.59" fill="currentColor"/><circle cx="52.93" cy="27.88" r="1.36" fill="currentColor"/><circle cx="6.46" cy="28.32" r="1.00" fill="currentColor"/><circle cx="32.94" cy="29.18" r="1.70" fill="currentColor"/><circle cx="57.89" cy="30.05" r="0.94" fill="currentColor"/><circle cx="11.99" cy="30.48" r="1.42" fill="currentColor"/><circle cx="46.74" cy="31.35" r="1.57" fill="currentColor"/><circle cx="23.98" cy="32.65" r="1.67" fill="currentColor"/><circle cx="55.89" cy="33.52" r="1.22" fill="currentColor"/><circle cx="7.56" cy="33.95" r="1.17" fill="currentColor"/><circle cx="38.47" cy="34.82" r="1.68" fill="currentColor"/><circle cx="16.18" cy="36.12" r="1.53" fill="currentColor"/><circle cx="50.65" cy="36.98" r="1.44" fill="currentColor"/><circle cx="6.57" cy="37.42" r="0.89" fill="currentColor"/><circle cx="29.55" cy="38.28" r="1.68" fill="currentColor"/><circle cx="56.57" cy="39.15" r="1.04" fill="currentColor"/><circle cx="10.89" cy="39.58" r="1.31" fill="currentColor"/><circle cx="43.12" cy="40.45" r="1.58" fill="currentColor"/><circle cx="21.57" cy="41.75" r="1.58" fill="currentColor"/><circle cx="52.42" cy="42.62" r="1.28" fill="currentColor"/><circle cx="8.97" cy="43.05" r="1.05" fill="currentColor"/><circle cx="34.75" cy="43.92" r="1.61" fill="currentColor"/><circle cx="54.63" cy="44.78" r="0.88" fill="currentColor"/><circle cx="15.98" cy="45.22" r="1.39" fill="currentColor"/><circle cx="45.84" cy="46.08" r="1.43" fill="currentColor"/><circle cx="27.20" cy="47.38" r="1.54" fill="currentColor"/><circle cx="51.27" cy="48.25" r="1.10" fill="currentColor"/><circle cx="13.82" cy="48.68" r="1.16" fill="currentColor"/><circle cx="38.32" cy="49.55" r="1.46" fill="currentColor"/><circle cx="22.17" cy="50.85" r="1.37" fill="currentColor"/><circle cx="45.30" cy="51.72" r="1.23" fill="currentColor"/><circle cx="15.61" cy="52.15" r="0.94" fill="currentColor"/><circle cx="31.78" cy="53.02" r="1.38" fill="currentColor"/><circle cx="45.97" cy="53.88" r="0.94" fill="currentColor"/><circle cx="21.30" cy="54.32" r="1.15" fill="currentColor"/><circle cx="38.17" cy="55.18" r="1.21" fill="currentColor"/><circle cx="28.88" cy="56.48" r="1.15" fill="currentColor"/><circle cx="37.20" cy="57.35" r="0.98" fill="currentColor"/><circle cx="28.79" cy="57.78" r="0.93" fill="currentColor"/><circle cx="40" cy="27" r="3.6" fill="#f0a44f"/></svg>
+      EarthState
+    </a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="platforms/index.html">Platforms</a>
+      <a href="modelling.html" aria-current="page">Modelling</a>
+      <a href="aiot.html">AIoT</a>
+      <a href="lab/index.html">3D Lab</a>
+      <a href="demos/index.html">Demos</a>
+      <a href="advisory.html">Advisory</a>
+      <a href="network.html">Network</a>
+      <a href="about.html">About</a>
+      <a class="cta" href="contact.html">Request a walkthrough</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="page-head">
+  <div class="wrap">
+    <p class="kicker">Automated modelling</p>
+    <h1>From drawings and point clouds to a model an engineer can check</h1>
+    <p class="lede">Most ageing structures have drawings, and many have been scanned. Very few have an analysis model. EarthState builds that model automatically from what the owner already holds, runs its own checks on it and records every assumption.</p>
+    <div class="actions">
+      <a class="btn primary" href="demos/twin/analysis-demo.html">See a model built from drawings</a>
+      <a class="btn ghost" href="contact.html">Try it on your drawings</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap feature">
+    <figure class="media"><img src="assets/img/ui-twin-model.jpg" alt="EarthState Twin: a lattice tower model built from drawing tables, with model facts, member groups and sections listed beside the elevation." loading="lazy"><figcaption>EarthState Twin · model built from drawing tables · synthetic 48 m tower</figcaption></figure>
+    <div>
+      <span class="num">Route 01 · Drawings</span>
+      <h2>Straight from the drawing set</h2>
+      <p>A drawing set that arrives as a vector PDF from CAD is read directly: the lines on each page, the dimension chains and the text labels. Where the general arrangement has a side view, the result is a member-level model, not an outline.</p>
+      <ul class="ticks">
+        <li>Vector PDF drawings, or node and member tables from the drawing workbook</li>
+        <li>3D frame model with sections and steel grades on every member</li>
+        <li>Self-checks: gravity equilibrium, no mechanisms in the stiffness matrix, natural frequencies</li>
+        <li>Readings are kept per drawing file, so a reviewer can trace them</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="figs">
+      <div><b>90%</b><span>of members matched, against an independent member model of the same tower</span></div>
+      <div><b>97%</b><span>of nodes within 150 mm of the independent model</span></div>
+      <div><b>3%</b><span>largest difference in natural frequencies; critical wind speed 40.0 against 40.9 m/s</span></div>
+    </div>
+    <p class="data-note">Comparison on one real 66 m double-circuit angle tower with anonymised drawing geometry. Independent engineering review of the verification cases is in progress.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap feature flip">
+    <figure class="media"><img src="assets/img/pc-arch-bridge.jpg" alt="Laser-scan point cloud of a long-span steel arch bridge under construction in a mountain gorge." loading="lazy"><figcaption>Laser-scan point cloud · long-span arch bridge during construction · identifying details masked</figcaption></figure>
+    <div>
+      <span class="num">Route 02 · Point clouds</span>
+      <h2>From a laser scan of what is really there</h2>
+      <p>Where drawings are missing, or no longer match the structure, the model starts from a scan. Terrestrial laser scanning feeds point-cloud processing, a parametric model and then finite element analysis, so the assessment uses measured geometry.</p>
+      <ul class="ticks">
+        <li>Components recognised and separated in the point cloud</li>
+        <li>Parametric geometry fitted to the measured shape</li>
+        <li>The same model handed to structural analysis</li>
+      </ul>
+      <p class="muted small">Method developed and published by the founder; it is being brought into EarthState Twin.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="figs">
+      <div><b>91%</b><span>Intersection over Union against critical structural outlines, on a real bridge</span></div>
+      <div><b>83%</b><span>of primary components identified automatically</span></div>
+      <div><b>1/1800</b><span>of the span: largest geometric deviation in a virtual trial assembly of prefabricated steel</span></div>
+    </div>
+    <p class="data-note">Published results from the founder's peer-reviewed work on real and experimental bridges.</p>
+  </div>
+</section>
+
+<section class="section night">
+  <div class="wrap">
+    <div class="section-head"><p class="kicker">One source, two models</p><h2>An analysis model and an information model from the same drawings</h2>
+      <p class="lede">The drawings that produce the structural model also produce a BIM model, so the asset record and the calculation never drift apart.</p></div>
+    <div class="grid g3">
+      <div class="card"><span class="num">Structural</span><h3>Analysis model</h3><p>Member-level finite element model, wind loads to EN 1991-1-4, member checks to EN 1993, and a reduced-order model for fast scenario runs.</p></div>
+      <div class="card"><span class="num">Information</span><h3>IFC4 model</h3><p>One IfcMember per member, the structure as an assembly, Uniclass 2015 classification, EN 10025-2 materials and names that follow ISO 19650-2 with the UK National Annex.</p></div>
+      <div class="card"><span class="num">Handover</span><h3>Asset data</h3><p>A COBie workbook linked to the model, information requirements to EN 17412-1, and ISO 19650-4 style acceptance checks before anything is issued.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head"><p class="kicker">How a model is accepted</p><h2>Built by the platform, accepted by an engineer</h2></div>
+    <div class="steps s5">
+      <div><i>01</i><b>Read</b><span>Project files are indexed in place and read-only. Drawings, tables and scans are classified.</span></div>
+      <div><i>02</i><b>Build</b><span>Geometry, members, sections and supports are generated, with every assumption written down.</span></div>
+      <div><i>03</i><b>Self-check</b><span>Geometry and mechanics checks run automatically and are reported as pass, attention or fail.</span></div>
+      <div><i>04</i><b>Audit</b><span>Each key step goes to an audit column, where an engineer confirms it, modifies it or raises a doubt.</span></div>
+      <div><i>05</i><b>Use</b><span>Only then does the model go on to sensors, calibration, capacity assessment and the report.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section tight band">
+  <div class="wrap">
+    <h2>Have drawings or a scan, but no model?</h2>
+    <div class="actions" style="margin:0"><a class="btn primary" href="contact.html">Request a walkthrough</a><a class="btn ghost" href="lab/index.html">Open the 3D Lab</a></div>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-brand">EarthState</p>
+        <p>World models for infrastructure. An independent engineering and research practice based in the United Kingdom, working across the UK, Europe and North America.</p>
+      </div>
+      <div>
+        <h4>Platforms</h4>
+        <ul>
+          <li><a href="platforms/structural-twin.html">EarthState Twin</a></li>
+          <li><a href="platforms/standfast.html">Standfast</a></li>
+          <li><a href="platforms/facility-twin.html">FacilityNexus</a></li>
+          <li><a href="modelling.html">Automated modelling</a></li>
+          <li><a href="aiot.html">AIoT and sensors</a></li>
+          <li><a href="lab/index.html">3D Lab</a></li>
+          <li><a href="demos/index.html">Demos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Practice</h4>
+        <ul>
+          <li><a href="advisory.html">Advisory</a></li>
+          <li><a href="network.html">Network</a></li>
+          <li><a href="method.html">Method</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="research.html">Research</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:daguang.han@gmail.com">daguang.han@gmail.com</a></li>
+          <li><a href="contact.html">Request a walkthrough</a></li>
+          <li><a href="about.html">About the founder</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>&copy; <span id="year">2026</span> EarthState is the trading name of Dr Daguang Han.</span>
+      <span><a href="privacy.html">Privacy and cookies</a></span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/site.js?v=dc6147db11" defer></script>
+</body>
+</html>
