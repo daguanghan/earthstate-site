@@ -4,7 +4,7 @@ const { createGlobe } = await import(`./globe.js${new URL(import.meta.url).searc
 
 function fillCounts(g) {
   const c = g.counts;
-  const expert = c.kinds['Academic expert'] || { places: 0, people: 0 };
+  const expert = c.kinds['University'] || { places: 0, people: 0 };
   const partner = c.kinds['Research partner'] || { places: 0, people: 0 };
   const values = {
     resources: c.resources, people: c.people, rd: c.rd, consulting: c.consulting,

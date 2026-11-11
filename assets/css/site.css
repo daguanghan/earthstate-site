@@ -327,3 +327,19 @@ dl.facts dd { margin: 0; color: var(--ink-2); }
 .gx-note { margin: 0; padding: 14px var(--gutter) 20px; font: 12px/1.5 var(--f-mono); color: var(--muted); max-width: none; }
 .gx.gx-failed .gx-stage { display: flex; align-items: center; justify-content: center; }
 @media (max-width: 640px) { .gx-stage { height: 72vh; min-height: 420px; } .gx-group button { padding: 8px 11px; font-size: 12px; } }
+
+/* maturity labels and product modules */
+.stage { display: inline-flex; align-items: center; gap: 7px; font: 500 10.5px/1 var(--f-mono); letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 11px 6px 9px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--ink-2); white-space: nowrap; vertical-align: middle; }
+.stage::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.stage.demo { color: var(--rd); border-color: rgba(95, 208, 189, 0.45); }
+.stage.req { color: var(--accent-2); border-color: rgba(233, 184, 114, 0.5); }
+.stage.dev { color: var(--muted); }
+h2 .stage, h3 .stage { margin-left: 8px; position: relative; top: -0.18em; }
+.page-head .stage { margin-top: 4px; }
+.legend { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 12px 34px; font-size: 14px; color: var(--ink-2); }
+.legend li { display: flex; align-items: center; gap: 10px; }
+.mods { list-style: none; padding: 0; margin: 20px 0 24px; border-top: 1px solid var(--line); }
+.mods li { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; padding: 15px 0; border-bottom: 1px solid var(--line); align-items: center; }
+.mods b { color: #fff; font-weight: 500; font-size: 17px; }
+.mods .d { grid-column: 1 / -1; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
+.site-foot .foot-grid > div:first-child p + p { margin-top: 10px; color: var(--muted); }

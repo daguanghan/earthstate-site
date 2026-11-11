@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../assets/css/site.css?v=dc6147db11">
+<link rel="stylesheet" href="../assets/css/site.css?v=79d1894ef9">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -43,9 +43,10 @@
 <main id="main">
 <section class="page-head">
   <div class="wrap">
-    <p class="kicker">Platform 01 · EarthState Twin</p>
+    <p class="kicker">EarthState Grid · EarthState Twin</p>
     <h1>From an ageing tower's drawings to a capacity an engineer can sign</h1>
-    <p class="lede">EarthState Twin takes project files, drawings and sensor data for one structure, builds a checkable model, runs the code checks and returns a capacity assessment and a ranked repair list, with every step recorded.</p>
+    <p><span class="stage demo">Demo</span></p>
+    <p class="lede">EarthState Twin, the single-structure module of EarthState Grid, takes project files, drawings and sensor data for one structure, builds a checkable model, runs the code checks and returns a capacity assessment and a ranked repair list, with every step recorded.</p>
   </div>
 </section>
 
@@ -112,9 +113,9 @@
   <div class="wrap">
     <div class="section-head"><p class="kicker">Verification</p><h2>What has been checked, and what has not yet</h2></div>
     <div class="table-wrap"><table class="plain">
-      <tr><th>Drawing to model</th><td>Against an independent member model: 90% of members matched, 97% of nodes within 150 mm, natural frequencies within 3%, critical wind speed 40.0 against 40.9 m/s.</td></tr>
-      <tr><th>Solver and wind-load suites</th><td>All automated test cases pass. Independent engineering review is in progress.</td></tr>
-      <tr><th>Demonstration data</th><td>The showcase tower is a real 66 m double-circuit angle tower with anonymised drawing geometry and measured wind records. Strain data are synthetic and labelled as demonstration data.</td></tr>
+      <tr><th>Drawing to model</th><td>Every model built from drawings runs its own checks before anything else: gravity equilibrium, no mechanisms in the stiffness matrix, and natural frequencies. Each result is reported as pass, attention or fail.</td></tr>
+      <tr><th>Solver and wind-load suites</th><td>All automated test cases pass. Engineer review of those cases is still to be done.</td></tr>
+      <tr><th>Demonstration data</th><td>The demos use one synthetic 48 m tower. Sensor records in the demos are synthetic and labelled as demonstration data on every plot.</td></tr>
       <tr><th>Status</th><td>Research prototype. Runs locally on Windows or macOS; core functions work offline.</td></tr>
     </table></div>
     <p class="small muted" style="margin-top:16px">UK patent application GB2626083.6 (filed 3 November 2026), patent pending.</p>
@@ -138,7 +139,7 @@
 <section class="section tight band">
   <div class="wrap">
     <h2>See the twin run on a structure like yours</h2>
-    <div class="actions" style="margin:0"><a class="btn primary" href="../contact.html">Request a walkthrough</a><a class="btn ghost" href="../lab/index.html">Open the 3D Lab</a></div>
+    <div class="actions" style="margin:0"><a class="btn primary" href="../contact.html">Request a walkthrough</a><a class="btn ghost" href="standfast.html">Standfast, for a whole line</a><a class="btn ghost" href="index.html">All four products</a></div>
   </div>
 </section>
 </main>
@@ -147,14 +148,16 @@
     <div class="foot-grid">
       <div>
         <p class="foot-brand">EarthState</p>
-        <p>World models for infrastructure. An independent engineering and research practice based in the United Kingdom, working across the UK, Europe and North America.</p>
+        <p>World models for infrastructure. An engineering and research practice.</p>
+        <p>EarthState, Loughborough, United Kingdom</p>
       </div>
       <div>
-        <h4>Platforms</h4>
+        <h4>Platform</h4>
         <ul>
-          <li><a href="../platforms/structural-twin.html">EarthState Twin</a></li>
-          <li><a href="../platforms/standfast.html">Standfast</a></li>
-          <li><a href="../platforms/facility-twin.html">FacilityNexus</a></li>
+          <li><a href="../platforms/index.html#grid">EarthState Grid</a></li>
+          <li><a href="../platforms/water.html">EarthState Water</a></li>
+          <li><a href="../platforms/bridges-roads.html">EarthState Bridges &amp; Roads</a></li>
+          <li><a href="../platforms/facility-twin.html">EarthState Facilities</a></li>
           <li><a href="../modelling.html">Automated modelling</a></li>
           <li><a href="../aiot.html">AIoT and sensors</a></li>
           <li><a href="../lab/index.html">3D Lab</a></li>
@@ -186,6 +189,6 @@
     </div>
   </div>
 </footer>
-<script src="../assets/js/site.js?v=dc6147db11" defer></script>
+<script src="../assets/js/site.js?v=79d1894ef9" defer></script>
 </body>
 </html>

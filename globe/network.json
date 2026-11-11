@@ -1,5 +1,5 @@
 {
- "_about": "Resource network: places of academic experts and research partners (no names). Projects: research and development, and consulting, from the founder's archive; client names are not shown and positions in China are indicative by region.",
+ "_about": "Universities and partners: places of universities where the founder has an active collaboration or has met academics to discuss joint work, and research partner organisations (no names; correspondence alone is not counted). Projects: research and development, and consulting, from the founder's archive; client names are not shown and positions in China are indicative by region.",
  "hub": {
   "lat": 52.5,
   "lon": -1.5,
@@ -10,266 +10,196 @@
    "lat": 51.487,
    "lon": -3.179,
    "place": "Cardiff, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 40.443,
    "lon": -79.943,
    "place": "Pittsburgh, United States",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 52.002,
    "lon": 4.373,
    "place": "Delft, Netherlands",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 52.765,
    "lon": -1.229,
    "place": "Loughborough, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 63.419,
    "lon": 10.402,
    "place": "Trondheim, Norway",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 51.525,
    "lon": -0.134,
    "place": "London, United Kingdom",
-   "kind": "Academic expert",
-   "count": 4
+   "kind": "University",
+   "count": 3
   },
   {
    "lat": 51.458,
    "lon": -2.603,
    "place": "Bristol, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 52.204,
    "lon": 0.115,
    "place": "Cambridge, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 53.467,
    "lon": -2.234,
    "place": "Manchester, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 52.938,
    "lon": -1.195,
    "place": "Nottingham, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 53.486,
    "lon": -2.272,
    "place": "Salford, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 57.015,
    "lon": 9.985,
    "place": "Aalborg, Denmark",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 52.486,
    "lon": -1.888,
    "place": "Birmingham, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 2
   },
   {
    "lat": 50.974,
    "lon": 11.329,
    "place": "Weimar, Germany",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 57.689,
    "lon": 11.974,
    "place": "Gothenburg, Sweden",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 55.909,
    "lon": -3.32,
    "place": "Edinburgh, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 2
   },
   {
    "lat": 50.878,
    "lon": 4.7,
    "place": "Leuven, Belgium",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 37.979,
    "lon": 23.783,
    "place": "Athens, Greece",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 54.98,
    "lon": -1.615,
    "place": "Newcastle, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 55.786,
    "lon": 12.524,
    "place": "Copenhagen, Denmark",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 51.38,
    "lon": -2.328,
    "place": "Bath, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 53.807,
    "lon": -1.555,
    "place": "Leeds, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 51.754,
    "lon": -1.254,
    "place": "Oxford, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 55.862,
    "lon": -4.242,
    "place": "Glasgow, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 51.243,
    "lon": -0.59,
    "place": "Guildford, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 52.384,
    "lon": -1.562,
    "place": "Coventry, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 43.009,
    "lon": -81.273,
    "place": "London, Ontario, Canada",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 59.92,
-   "lon": 10.735,
-   "place": "Oslo, Norway",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 53.307,
-   "lon": -6.222,
-   "place": "Dublin, Ireland",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 35.145,
-   "lon": 33.413,
-   "place": "Nicosia, Cyprus",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 53.381,
-   "lon": -1.489,
-   "place": "Sheffield, United Kingdom",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 50.935,
-   "lon": -1.396,
-   "place": "Southampton, United Kingdom",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {
    "lat": 48.08,
    "lon": 11.638,
    "place": "Munich, Germany",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 37.4275,
-   "lon": -122.1697,
-   "place": "Stanford, United States",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 37.8719,
-   "lon": -122.2585,
-   "place": "Berkeley, United States",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 42.4534,
-   "lon": -76.4735,
-   "place": "Ithaca, United States",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 40.7295,
-   "lon": -73.9965,
-   "place": "New York, United States",
-   "kind": "Academic expert",
-   "count": 1
-  },
-  {
-   "lat": 29.6436,
-   "lon": -82.3549,
-   "place": "Gainesville, United States",
-   "kind": "Academic expert",
+   "kind": "University",
    "count": 1
   },
   {

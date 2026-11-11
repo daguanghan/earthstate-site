@@ -32,7 +32,7 @@ export const COLOURS = {
   hubRing: '#f6d7a6',
 };
 const CAT = { resources: 0, rd: 1, consulting: 2, hub: 3 };
-const TYPE_LABEL = { resources: 'Resource network', rd: 'R&D project', consulting: 'Consulting project', hub: 'EarthState' };
+const TYPE_LABEL = { resources: 'Universities and partners', rd: 'R&D project', consulting: 'Consulting project', hub: 'EarthState' };
 
 /* scenes: whole-Earth views use frac (Earth radius as a share of the half view), regional views use span
    (degrees of the surface visible top to bottom). side places the Earth in wide frames. emph = resources, rd, consulting */
@@ -1069,13 +1069,13 @@ export async function createGlobe(container, options = {}) {
     const d = it.d;
     if (it.cat === CAT.resources) {
       return {
-        kind: 'resource', type: d.kind || 'Resource network', title: d.kind || 'Resource network',
-        note: displayPlace(d.place) + ((d.count || 1) > 1 ? ` · ${d.count} people` : ''), source: '', country: displayPlace(d.place),
+        kind: 'resource', type: d.kind || 'Universities and partners', title: d.kind || 'Universities and partners',
+        note: displayPlace(d.place) + ((d.count || 1) > 1 ? ` · ${d.count} universities` : ''), source: '', country: displayPlace(d.place),
         count: d.count || 1, color: it.color, label: TYPE_LABEL.resources,
       };
     }
     if (it.cat === CAT.hub) {
-      return { kind: 'hub', type: 'Hub', title: 'EarthState', note: 'Independent engineering and research practice, United Kingdom', source: 'EarthState', country: 'United Kingdom', color: COLOURS.hubRing, label: 'Hub', link: true };
+      return { kind: 'hub', type: 'Hub', title: 'EarthState', note: 'Engineering and research practice, Loughborough, United Kingdom', source: 'EarthState', country: 'United Kingdom', color: COLOURS.hubRing, label: 'Hub', link: true };
     }
     return {
       kind: it.key, type: it.key === 'rd' ? 'R&D' : 'Consulting', title: d.title, note: d.note, source: d.source || '',
@@ -1113,7 +1113,7 @@ export async function createGlobe(container, options = {}) {
     card.append(x0, kind, el('h3', 'gl-title', info.title));
     if (info.note) card.append(el('p', 'gl-note', info.note));
     if (info.kind !== 'resource' && info.kind !== 'hub') card.append(el('p', 'gl-meta', info.country));
-    if (info.kind === 'resource') card.append(el('p', 'gl-meta', 'Names are shown in the scope of each engagement, not here.'));
+    if (info.kind === 'resource') card.append(el('p', 'gl-meta', 'Names are not shown.'));
     if (info.link) {
       const a = el('a', 'gl-link', 'See the platforms →');
       a.href = `${opt.linkBase}platforms/index.html`;
