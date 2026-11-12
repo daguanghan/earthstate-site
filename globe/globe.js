@@ -32,7 +32,7 @@ export const COLOURS = {
   hubRing: '#f6d7a6',
 };
 const CAT = { resources: 0, rd: 1, consulting: 2, hub: 3 };
-const TYPE_LABEL = { resources: 'Universities and partners', rd: 'R&D project', consulting: 'Consulting project', hub: 'EarthState' };
+const TYPE_LABEL = { resources: 'Universities and partners', rd: 'R&D project', consulting: 'Industry project', hub: 'Team lead' };
 
 /* scenes: whole-Earth views use frac (Earth radius as a share of the half view), regional views use span
    (degrees of the surface visible top to bottom). side places the Earth in wide frames. emph = resources, rd, consulting */
@@ -1075,10 +1075,10 @@ export async function createGlobe(container, options = {}) {
       };
     }
     if (it.cat === CAT.hub) {
-      return { kind: 'hub', type: 'Hub', title: 'EarthState', note: 'Engineering and research practice, Loughborough, United Kingdom', source: 'EarthState', country: 'United Kingdom', color: COLOURS.hubRing, label: 'Hub', link: true };
+      return { kind: 'hub', type: 'Hub', title: 'EarthState research prototypes', note: 'Developed by Dr Daguang Han\'s research team; led from the United Kingdom', source: 'EarthState', country: 'United Kingdom', color: COLOURS.hubRing, label: 'Hub', link: true };
     }
     return {
-      kind: it.key, type: it.key === 'rd' ? 'R&D' : 'Consulting', title: d.title, note: d.note, source: d.source || '',
+      kind: it.key, type: it.key === 'rd' ? 'R&D' : 'Industry', title: d.title, note: d.note, source: d.source || '',
       country: d.country, color: it.color, label: TYPE_LABEL[it.key], link: d.source === 'EarthState',
     };
   }
