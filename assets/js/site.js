@@ -60,6 +60,19 @@
     requestAnimationFrame(frame);
   });
 
+  // Tours in a frame: keep the 1440 x 810 stage and scale it to the frame's width.
+  var stages = document.querySelectorAll('.pframe');
+  if (stages.length) {
+    var fit = function () {
+      stages.forEach(function (f) {
+        var i = f.querySelector('iframe');
+        if (i) i.style.transform = 'scale(' + (f.clientWidth / 1440) + ')';
+      });
+    };
+    fit();
+    window.addEventListener('resize', fit);
+  }
+
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
 })();

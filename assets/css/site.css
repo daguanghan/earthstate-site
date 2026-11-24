@@ -343,3 +343,14 @@ h2 .stage, h3 .stage { margin-left: 8px; position: relative; top: -0.18em; }
 .mods b { color: #fff; font-weight: 500; font-size: 17px; }
 .mods .d { grid-column: 1 / -1; color: var(--ink-2); font-size: 14.5px; line-height: 1.55; }
 .site-foot .foot-grid > div:first-child p + p { margin-top: 10px; color: var(--muted); }
+
+/* Tours that play by themselves, shown in a frame at a fixed 1440 x 810 stage and scaled to fit. */
+.player .pframe { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0b0d10; }
+.player .pframe iframe { position: absolute; left: 0; top: 0; width: 1440px; height: 810px; border: 0; transform-origin: 0 0; }
+.player figcaption { display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: space-between; align-items: center; }
+.player figcaption a { color: var(--ink-2); white-space: nowrap; }
+.player figcaption a:hover { color: #fff; }
+.tours { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+.tours h3 { margin: 18px 0 6px; }
+.tours .actions { margin-top: 16px; }
+@media (max-width: 900px) { .tours { grid-template-columns: 1fr; } }
